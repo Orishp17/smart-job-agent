@@ -4,32 +4,49 @@ import requests
 bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
 chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
-message = """🚀 נמצאו משרות חדשות
+jobs = [
+    {
+        "title": "Junior Product Manager",
+        "company": "Example Tech",
+        "location": "Tel Aviv, Israel",
+        "score": "88/100",
+        "reasons": [
+            "תפקיד ג'וניור",
+            "משלב מוצר, דאטה ועבודה מול צוותים",
+            "רלוונטי למסלול הקריירה שלך"
+        ],
+        "link": "https://example.com/job-posting-1"
+    },
+    {
+        "title": "Product Operations Analyst",
+        "company": "DataFlow Labs",
+        "location": "Herzliya, Israel",
+        "score": "84/100",
+        "reasons": [
+            "משלב אופרציה, אנליזה ותהליכים",
+            "מתאים לפרופיל כניסה חזק",
+            "קרוב לעולמות מוצר ודאטה"
+        ],
+        "link": "https://example.com/job-posting-2"
+    }
+]
 
-1. Junior Product Manager
-🏢 חברה: Example Tech
-📍 מיקום: Tel Aviv, Israel
-📊 ציון התאמה: 88/100
-למה זה מתאים:
-• תפקיד ג'וניור
-• משלב מוצר, דאטה ועבודה מול צוותים
-• רלוונטי למסלול הקריירה שלך
-🔗 לינק:
-https://example.com/job-posting-1
+message = "🚀 נמצאו משרות חדשות\n\n"
 
---------------------
+for i, job in enumerate(jobs, start=1):
+    message += f"{i}. {job['title']}\n"
+    message += f"🏢 חברה: {job['company']}\n"
+    message += f"📍 מיקום: {job['location']}\n"
+    message += f"📊 ציון התאמה: {job['score']}\n"
+    message += "למה זה מתאים:\n"
 
-2. Product Operations Analyst
-🏢 חברה: DataFlow Labs
-📍 מיקום: Herzliya, Israel
-📊 ציון התאמה: 84/100
-למה זה מתאים:
-• משלב אופרציה, אנליזה ותהליכים
-• מתאים לפרופיל כניסה חזק
-• קרוב לעולמות מוצר ודאטה
-🔗 לינק:
-https://example.com/job-posting-2
-"""
+    for reason in job["reasons"]:
+        message += f"• {reason}\n"
+
+    message += f"🔗 לינק:\n{job['link']}\n"
+
+    if i < len(jobs):
+        message += "\n--------------------\n\n"
 
 url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
 
