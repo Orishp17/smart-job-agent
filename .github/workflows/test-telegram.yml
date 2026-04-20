@@ -3,6 +3,9 @@ name: Test Telegram Bot
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   run-python-app:
     runs-on: ubuntu-latest
@@ -25,3 +28,11 @@ jobs:
 
       - name: Run app.py
         run: python app.py
+
+      - name: Commit updated sent_jobs.json
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add sent_jobs.json
+          git diff --cached --quiet || git commit -m "Update sent_jobs.json after sending jobs"
+          git push
