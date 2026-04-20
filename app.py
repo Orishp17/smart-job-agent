@@ -4,7 +4,21 @@ import requests
 bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
 chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
-message = "שלום אורי - app.py רץ מתוך GitHub ושולח הודעה אמיתית דרך Python."
+message = """🚀 נמצאה משרה חדשה
+
+תפקיד: Junior Product Manager
+חברה: Example Tech
+מיקום: Tel Aviv, Israel
+התאמה: 88/100
+
+למה זה מתאים:
+- תפקיד ג'וניור
+- כולל עבודה עם מוצר ודאטה
+- רלוונטי לפרופיל שלך
+
+לינק:
+https://example.com/job-posting
+"""
 
 url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
 
