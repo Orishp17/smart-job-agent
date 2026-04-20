@@ -4,19 +4,19 @@ import requests
 bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
 chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
-message = """🚀 נמצאה משרה חדשה
+message = """🚀 Job Match Found
 
-תפקיד: Junior Product Manager
-חברה: Example Tech
-מיקום: Tel Aviv, Israel
-התאמה: 88/100
+🎯 תפקיד: Junior Product Manager
+🏢 חברה: Example Tech
+📍 מיקום: Tel Aviv, Israel
+📊 ציון התאמה: 88/100
 
-למה זה מתאים:
-- תפקיד ג'וניור
-- כולל עבודה עם מוצר ודאטה
-- רלוונטי לפרופיל שלך
+למה זה מתאים לך:
+• תפקיד ג'וניור
+• משלב מוצר, דאטה ועבודה מול צוותים
+• רלוונטי למסלול הקריירה שלך
 
-לינק:
+🔗 לינק להגשה:
 https://example.com/job-posting
 """
 
