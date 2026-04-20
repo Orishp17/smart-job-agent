@@ -5,34 +5,8 @@ import requests
 bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
 chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
-jobs = [
-    {
-        "id": "job_1",
-        "title": "Junior Product Manager",
-        "company": "Example Tech",
-        "location": "Tel Aviv, Israel",
-        "score": "88/100",
-        "reasons": [
-            "תפקיד ג'וניור",
-            "משלב מוצר, דאטה ועבודה מול צוותים",
-            "רלוונטי למסלול הקריירה שלך"
-        ],
-        "link": "https://example.com/job-posting-1"
-    },
-    {
-        "id": "job_2",
-        "title": "Product Operations Analyst",
-        "company": "DataFlow Labs",
-        "location": "Herzliya, Israel",
-        "score": "84/100",
-        "reasons": [
-            "משלב אופרציה, אנליזה ותהליכים",
-            "מתאים לפרופיל כניסה חזק",
-            "קרוב לעולמות מוצר ודאטה"
-        ],
-        "link": "https://example.com/job-posting-2"
-    }
-]
+with open("jobs.json", "r", encoding="utf-8") as file:
+    jobs = json.load(file)
 
 with open("sent_jobs.json", "r", encoding="utf-8") as file:
     sent_jobs = json.load(file)
