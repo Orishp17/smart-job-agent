@@ -24,5 +24,18 @@
       "קרוב לעולמות מוצר ודאטה"
     ],
     "link": "https://example.com/job-posting-2"
+  },
+  {
+    "id": "job_3",
+    "title": "Business Analyst",
+    "company": "Insight Works",
+    "location": "Ramat Gan, Israel",
+    "score": "81/100",
+    "reasons": [
+      "תפקיד כניסה רלוונטי",
+      "כולל ניתוח נתונים ותהליכים",
+      "מתאים למסלול משיק למוצר"
+    ],
+    "link": "https://example.com/job-posting-3"
   }
 ]
