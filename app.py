@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 
 bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -6,6 +7,7 @@ chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
 jobs = [
     {
+        "id": "job_1",
         "title": "Junior Product Manager",
         "company": "Example Tech",
         "location": "Tel Aviv, Israel",
@@ -18,6 +20,7 @@ jobs = [
         "link": "https://example.com/job-posting-1"
     },
     {
+        "id": "job_2",
         "title": "Product Operations Analyst",
         "company": "DataFlow Labs",
         "location": "Herzliya, Israel",
@@ -31,34 +34,50 @@ jobs = [
     }
 ]
 
-message = "🚀 נמצאו משרות חדשות\n\n"
+with open("sent_jobs.json", "r", encoding="utf-8") as file:
+    sent_jobs = json.load(file)
 
-for i, job in enumerate(jobs, start=1):
-    message += f"{i}. {job['title']}\n"
-    message += f"🏢 חברה: {job['company']}\n"
-    message += f"📍 מיקום: {job['location']}\n"
-    message += f"📊 ציון התאמה: {job['score']}\n"
-    message += "למה זה מתאים:\n"
+new_jobs = []
 
-    for reason in job["reasons"]:
-        message += f"• {reason}\n"
+for job in jobs:
+    if job["id"] not in sent_jobs:
+        new_jobs.append(job)
 
-    message += f"🔗 לינק:\n{job['link']}\n"
+if new_jobs:
+    message = "🚀 נמצאו משרות חדשות\n\n"
 
-    if i < len(jobs):
-        message += "\n--------------------\n\n"
+    for i, job in enumerate(new_jobs, start=1):
+        message += f"{i}. {job['title']}\n"
+        message += f"🏢 חברה: {job['company']}\n"
+        message += f"📍 מיקום: {job['location']}\n"
+        message += f"📊 ציון התאמה: {job['score']}\n"
+        message += "למה זה מתאים:\n"
 
-url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+        for reason in job["reasons"]:
+            message += f"• {reason}\n"
 
-payload = {
-    "chat_id": chat_id,
-    "text": message
-}
+        message += f"🔗 לינק:\n{job['link']}\n"
 
-response = requests.post(url, data=payload)
+        if i < len(new_jobs):
+            message += "\n--------------------\n\n"
 
-print("Status code:", response.status_code)
-print("Response:", response.text)
+    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
 
+    payload = {
+        "chat_id": chat_id,
+        "text": message
+    }
 
+    response = requests.post(url, data=payload)
 
+    print("Status code:", response.status_code)
+    print("Response:", response.text)
+
+    for job in new_jobs:
+        sent_jobs.append(job["id"])
+
+    with open("sent_jobs.json", "w", encoding="utf-8") as file:
+        json.dump(sent_jobs, file, ensure_ascii=False, indent=2)
+
+else:
+    print("No new jobs to send.")
