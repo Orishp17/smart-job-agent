@@ -9,24 +9,34 @@ headers = {
 }
 
 def calculate_score(title):
-    score = 50
     title_lower = title.lower()
 
+    score = 55
+
     positive_keywords = {
-        "product": 15,
-        "manager": 15,
-        "junior": 20,
-        "data": 10,
-        "analyst": 10,
-        "operations": 8
+        "product": 12,
+        "manager": 10,
+        "data": 8,
+        "analyst": 9,
+        "business": 7,
+        "operations": 7,
+        "operation": 6,
+        "junior": 18,
+        "entry": 14,
+        "associate": 8,
+        "specialist": 6,
+        "ai": 6,
+        "strategy": 5
     }
 
     negative_keywords = {
-        "senior": -25,
-        "lead": -20,
-        "director": -30,
-        "vp": -40,
-        "head": -25
+        "senior": -22,
+        "lead": -18,
+        "director": -28,
+        "vp": -35,
+        "head": -25,
+        "principal": -20,
+        "chief": -30
     }
 
     for keyword, points in positive_keywords.items():
@@ -36,6 +46,25 @@ def calculate_score(title):
     for keyword, points in negative_keywords.items():
         if keyword in title_lower:
             score += points
+
+    if "product" in title_lower and "manager" in title_lower:
+        score += 8
+
+    if "data" in title_lower and "analyst" in title_lower:
+        score += 8
+
+    if "business" in title_lower and "operations" in title_lower:
+        score += 7
+
+    if "product" in title_lower and "data" in title_lower:
+        score += 5
+
+    junior_signals = ["junior", "entry", "associate", "specialist"]
+    if not any(word in title_lower for word in junior_signals):
+        score -= 6
+
+    if "senior" in title_lower and "junior" in title_lower:
+        score -= 10
 
     if score > 100:
         score = 100
