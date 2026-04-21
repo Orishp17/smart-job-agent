@@ -165,12 +165,23 @@ for search in SEARCHES:
         if href and href.startswith("/"):
             full_link = "https://www.jobmaster.co.il" + href
 
+        parent = link.parent
+        card_text = parent.get_text(" ", strip=True) if parent else ""
+
         title_lower = title.lower()
+        card_text_lower = card_text.lower()
+
         if not any(word in title_lower for word in ["product", "manager", "business", "analyst", "data", "operations"]):
             continue
 
-        parent = link.parent
-        card_text = parent.get_text(" ", strip=True) if parent else ""
+        blocked_title_keywords = ["senior", "lead", "director", "vp", "head", "principal", "chief"]
+        blocked_description_keywords = ["5+ years", "7+ years", "10+ years", "senior", "director", "vp", "head of", "leadership"]
+
+        if any(word in title_lower for word in blocked_title_keywords):
+            continue
+
+        if any(word in card_text_lower for word in blocked_description_keywords):
+            continue
 
         job_id = build_job_id(title, full_link)
         if job_id in seen_ids:
