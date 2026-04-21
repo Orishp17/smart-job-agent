@@ -18,36 +18,34 @@ for job in jobs:
         new_jobs.append(job)
 
 if new_jobs:
-    message = "🚀 נמצאו משרות חדשות\n\n"
+    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
 
-    for i, job in enumerate(new_jobs, start=1):
-        message += f"{i}. {job['title']}\n"
-        message += f"🏢 חברה: {job['company']}\n"
-        message += f"📍 מיקום: {job['location']}\n"
-        message += f"📊 ציון התאמה: {job['score']}\n"
-        message += "למה זה מתאים:\n"
+    for job in new_jobs:
+        message = f"""🚀 נמצאה משרה חדשה
+
+🎯 תפקיד: {job['title']}
+🏢 חברה: {job['company']}
+📍 מיקום: {job['location']}
+📊 ציון התאמה: {job['score']}
+
+למה זה מתאים:
+"""
 
         for reason in job["reasons"]:
             message += f"• {reason}\n"
 
-        message += f"🔗 לינק:\n{job['link']}\n"
+        message += f"\n🔗 לינק להגשה:\n{job['link']}"
 
-        if i < len(new_jobs):
-            message += "\n--------------------\n\n"
+        payload = {
+            "chat_id": chat_id,
+            "text": message
+        }
 
-    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+        response = requests.post(url, data=payload)
 
-    payload = {
-        "chat_id": chat_id,
-        "text": message
-    }
+        print("Status code:", response.status_code)
+        print("Response:", response.text)
 
-    response = requests.post(url, data=payload)
-
-    print("Status code:", response.status_code)
-    print("Response:", response.text)
-
-    for job in new_jobs:
         sent_jobs.append(job["id"])
 
     with open("sent_jobs.json", "w", encoding="utf-8") as file:
