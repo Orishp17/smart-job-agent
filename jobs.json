@@ -1,67 +1,72 @@
 [
   {
-    "id": "job_1",
-    "title": "Junior Product Manager",
-    "company": "Example Tech",
-    "location": "Tel Aviv, Israel",
-    "score": "88/100",
+    "id": "jobmaster_pm_640",
+    "title": "<span class=\"Gray\">",
+    "company": "JobMaster listing",
+    "location": "Israel",
+    "score": "80/100",
     "reasons": [
-      "תפקיד ג'וניור",
-      "משלב מוצר, דאטה ועבודה מול צוותים",
-      "רלוונטי למסלול הקריירה שלך"
+      "נשלף אוטומטית מ-JobMaster",
+      "רלוונטי לחיפוש Product Manager",
+      "מועמד לבדיקה ראשונית"
     ],
-    "link": "https://example.com/job-posting-1"
+    "link": "https://www.jobmaster.co.il/jobs/?q=Product+Manager",
+    "posted": "פורסם לפני 1 שעות"
   },
   {
-    "id": "job_2",
-    "title": "Product Operations Analyst",
-    "company": "DataFlow Labs",
-    "location": "Herzliya, Israel",
-    "score": "84/100",
+    "id": "jobmaster_pm_701",
+    "title": "<span class=\"Gray\">",
+    "company": "JobMaster listing",
+    "location": "Israel",
+    "score": "80/100",
     "reasons": [
-      "משלב אופרציה, אנליזה ותהליכים",
-      "מתאים לפרופיל כניסה חזק",
-      "קרוב לעולמות מוצר ודאטה"
+      "נשלף אוטומטית מ-JobMaster",
+      "רלוונטי לחיפוש Product Manager",
+      "מועמד לבדיקה ראשונית"
     ],
-    "link": "https://example.com/job-posting-2"
+    "link": "https://www.jobmaster.co.il/jobs/?q=Product+Manager",
+    "posted": "פורסם לפני 1 שעות"
   },
   {
-    "id": "job_3",
-    "title": "Business Analyst",
-    "company": "Insight Works",
-    "location": "Ramat Gan, Israel",
-    "score": "81/100",
+    "id": "jobmaster_pm_772",
+    "title": "<span class=\"Gray\">",
+    "company": "JobMaster listing",
+    "location": "Israel",
+    "score": "80/100",
     "reasons": [
-      "תפקיד כניסה רלוונטי",
-      "כולל ניתוח נתונים ותהליכים",
-      "מתאים למסלול משיק למוצר"
+      "נשלף אוטומטית מ-JobMaster",
+      "רלוונטי לחיפוש Product Manager",
+      "מועמד לבדיקה ראשונית"
     ],
-    "link": "https://example.com/job-posting-3"
+    "link": "https://www.jobmaster.co.il/jobs/?q=Product+Manager",
+    "posted": "פורסם לפני 1 ימים"
   },
   {
-    "id": "job_4",
-    "title": "Junior Data Analyst",
-    "company": "Metric Pulse",
-    "location": "Petah Tikva, Israel",
-    "score": "86/100",
+    "id": "jobmaster_pm_841",
+    "title": "<span class=\"Gray\">",
+    "company": "JobMaster listing",
+    "location": "Israel",
+    "score": "80/100",
     "reasons": [
-      "תפקיד ג'וניור רלוונטי",
-      "כולל עבודה עם דאטה וניתוח נתונים",
-      "מתאים למסלול קריירה משיק למוצר ואנליזה"
+      "נשלף אוטומטית מ-JobMaster",
+      "רלוונטי לחיפוש Product Manager",
+      "מועמד לבדיקה ראשונית"
     ],
-    "link": "https://example.com/job-posting-4"
+    "link": "https://www.jobmaster.co.il/jobs/?q=Product+Manager",
+    "posted": "פורסם לפני 1 ימים"
   },
   {
-    "id": "job_5",
-    "title": "Junior Business Operations Specialist",
-    "company": "Growth Hive",
-    "location": "Tel Aviv, Israel",
-    "score": "83/100",
+    "id": "jobmaster_pm_900",
+    "title": "<span class=\"Gray\">",
+    "company": "JobMaster listing",
+    "location": "Israel",
+    "score": "80/100",
     "reasons": [
-      "תפקיד כניסה רלוונטי",
-      "כולל עבודה עם תהליכים, תפעול וניתוח",
-      "מתאים למסלול משיק למוצר ואופרציה"
+      "נשלף אוטומטית מ-JobMaster",
+      "רלוונטי לחיפוש Product Manager",
+      "מועמד לבדיקה ראשונית"
     ],
-    "link": "https://example.com/job-posting-5"
+    "link": "https://www.jobmaster.co.il/jobs/?q=Product+Manager",
+    "posted": "פורסם לפני 6 ימים"
   }
 ]
