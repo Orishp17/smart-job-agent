@@ -28,13 +28,8 @@ if new_jobs:
 📍 מיקום: {job['location']}
 📊 ציון התאמה: {job['score']}
 
-למה זה מתאים:
-"""
-
-        for reason in job["reasons"]:
-            message += f"• {reason}\n"
-
-        message += f"\n🔗 לינק להגשה:\n{job['link']}"
+🔗 לינק להגשה:
+{job['link']}"""
 
         payload = {
             "chat_id": chat_id,
