@@ -2,7 +2,13 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-SEARCH_URL = "https://www.jobmaster.co.il/jobs/?q=Product+Manager"
+SEARCHES = [
+    "Product Manager",
+    "Junior Product Manager",
+    "Business Analyst",
+    "Data Analyst",
+    "Product Operations"
+]
 
 headers = {
     "User-Agent": "Mozilla/5.0"
@@ -115,8 +121,7 @@ def add_variation(title, description):
     unique_bonus = len(set(combined.split())) % 7
     length_bonus = min(len(combined) // 120, 4)
 
-    variation = unique_bonus + length_bonus
-    return variation
+    return unique_bonus + length_bonus
 
 def final_score(title, description):
     score = score_title(title)
@@ -131,63 +136,71 @@ def final_score(title, description):
 
     return f"{score}/100"
 
-response = requests.get(SEARCH_URL, headers=headers, timeout=30)
-response.raise_for_status()
+def build_job_id(title, link):
+    base = (title.strip().lower() + "|" + link.strip().lower())
+    return str(abs(hash(base)))[:12]
 
-soup = BeautifulSoup(response.text, "html.parser")
+all_jobs = []
+seen_ids = set()
 
-jobs = []
-seen_titles = set()
+for search in SEARCHES:
+    search_url = f"https://www.jobmaster.co.il/jobs/?q={search.replace(' ', '+')}"
 
-for link in soup.find_all("a"):
-    title = link.get_text(" ", strip=True)
-    href = link.get("href")
+    response = requests.get(search_url, headers=headers, timeout=30)
+    response.raise_for_status()
 
-    if not title:
-        continue
+    soup = BeautifulSoup(response.text, "html.parser")
 
-    if len(title) < 8:
-        continue
+    for link in soup.find_all("a"):
+        title = link.get_text(" ", strip=True)
+        href = link.get("href")
 
-    if "Product" not in title and "Manager" not in title:
-        continue
+        if not title:
+            continue
 
-    if title in seen_titles:
-        continue
+        if len(title) < 8:
+            continue
 
-    seen_titles.add(title)
+        full_link = href if href else search_url
+        if href and href.startswith("/"):
+            full_link = "https://www.jobmaster.co.il" + href
 
-    full_link = href if href else SEARCH_URL
-    if href and href.startswith("/"):
-        full_link = "https://www.jobmaster.co.il" + href
+        title_lower = title.lower()
+        if not any(word in title_lower for word in ["product", "manager", "business", "analyst", "data", "operations"]):
+            continue
 
-    card_text = ""
-    parent = link.parent
-    if parent:
-        card_text = parent.get_text(" ", strip=True)
+        parent = link.parent
+        card_text = parent.get_text(" ", strip=True) if parent else ""
 
-    score = final_score(title, card_text)
+        job_id = build_job_id(title, full_link)
+        if job_id in seen_ids:
+            continue
 
-    job = {
-        "id": f"jobmaster_{len(jobs) + 1}",
-        "title": title,
-        "company": "JobMaster listing",
-        "location": "Israel",
-        "score": score,
-        "reasons": [
-            "נשלף אוטומטית מ-JobMaster",
-            "רלוונטי לחיפוש Product Manager",
-            "ציון מבוסס על כותרת, תוכן ושונות"
-        ],
-        "link": full_link
-    }
+        seen_ids.add(job_id)
 
-    jobs.append(job)
+        score = final_score(title, card_text)
 
-    if len(jobs) >= 5:
-        break
+        job = {
+            "id": job_id,
+            "title": title,
+            "company": "JobMaster listing",
+            "location": "Israel",
+            "score": score,
+            "reasons": [],
+            "link": full_link
+        }
+
+        all_jobs.append(job)
+
+all_jobs = sorted(
+    all_jobs,
+    key=lambda job: int(job["score"].split("/")[0]),
+    reverse=True
+)
+
+all_jobs = all_jobs[:15]
 
 with open("jobs.json", "w", encoding="utf-8") as file:
-    json.dump(jobs, file, ensure_ascii=False, indent=2)
+    json.dump(all_jobs, file, ensure_ascii=False, indent=2)
 
-print(f"jobs.json created successfully with {len(jobs)} jobs")
+print(f"jobs.json created successfully with {len(all_jobs)} jobs")
