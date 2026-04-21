@@ -52,6 +52,19 @@ jobs = [
             "מתאים למסלול קריירה משיק למוצר ואנליזה"
         ],
         "link": "https://example.com/job-posting-4"
+    },
+    {
+        "id": "job_5",
+        "title": "Junior Business Operations Specialist",
+        "company": "Growth Hive",
+        "location": "Tel Aviv, Israel",
+        "score": "83/100",
+        "reasons": [
+            "תפקיד כניסה רלוונטי",
+            "כולל עבודה עם תהליכים, תפעול וניתוח",
+            "מתאים למסלול משיק למוצר ואופרציה"
+        ],
+        "link": "https://example.com/job-posting-5"
     }
 ]
 
