@@ -1,74 +1,47 @@
 import json
+import requests
+from bs4 import BeautifulSoup
 
-jobs = [
-    {
-        "id": "job_1",
-        "title": "Junior Product Manager",
-        "company": "Example Tech",
-        "location": "Tel Aviv, Israel",
-        "score": "88/100",
-        "reasons": [
-            "תפקיד ג'וניור",
-            "משלב מוצר, דאטה ועבודה מול צוותים",
-            "רלוונטי למסלול הקריירה שלך"
-        ],
-        "link": "https://example.com/job-posting-1"
-    },
-    {
-        "id": "job_2",
-        "title": "Product Operations Analyst",
-        "company": "DataFlow Labs",
-        "location": "Herzliya, Israel",
-        "score": "84/100",
-        "reasons": [
-            "משלב אופרציה, אנליזה ותהליכים",
-            "מתאים לפרופיל כניסה חזק",
-            "קרוב לעולמות מוצר ודאטה"
-        ],
-        "link": "https://example.com/job-posting-2"
-    },
-    {
-        "id": "job_3",
-        "title": "Business Analyst",
-        "company": "Insight Works",
-        "location": "Ramat Gan, Israel",
-        "score": "81/100",
-        "reasons": [
-            "תפקיד כניסה רלוונטי",
-            "כולל ניתוח נתונים ותהליכים",
-            "מתאים למסלול משיק למוצר"
-        ],
-        "link": "https://example.com/job-posting-3"
-    },
-    {
-        "id": "job_4",
-        "title": "Junior Data Analyst",
-        "company": "Metric Pulse",
-        "location": "Petah Tikva, Israel",
-        "score": "86/100",
-        "reasons": [
-            "תפקיד ג'וניור רלוונטי",
-            "כולל עבודה עם דאטה וניתוח נתונים",
-            "מתאים למסלול קריירה משיק למוצר ואנליזה"
-        ],
-        "link": "https://example.com/job-posting-4"
-    },
-    {
-        "id": "job_5",
-        "title": "Junior Business Operations Specialist",
-        "company": "Growth Hive",
-        "location": "Tel Aviv, Israel",
-        "score": "83/100",
-        "reasons": [
-            "תפקיד כניסה רלוונטי",
-            "כולל עבודה עם תהליכים, תפעול וניתוח",
-            "מתאים למסלול משיק למוצר ואופרציה"
-        ],
-        "link": "https://example.com/job-posting-5"
-    }
-]
+SEARCH_URL = "https://www.jobmaster.co.il/jobs/?q=Product+Manager"
+
+headers = {
+    "User-Agent": "Mozilla/5.0"
+}
+
+response = requests.get(SEARCH_URL, headers=headers, timeout=30)
+response.raise_for_status()
+
+html = response.text
+soup = BeautifulSoup(html, "html.parser")
+
+jobs = []
+
+for i, line in enumerate(html.splitlines()):
+    if "פורסם לפני" in line and i > 0:
+        title = html.splitlines()[i - 1].strip()
+        posted = line.strip()
+
+        job = {
+            "id": f"jobmaster_pm_{i}",
+            "title": title,
+            "company": "JobMaster listing",
+            "location": "Israel",
+            "score": "80/100",
+            "reasons": [
+                "נשלף אוטומטית מ-JobMaster",
+                "רלוונטי לחיפוש Product Manager",
+                "מועמד לבדיקה ראשונית"
+            ],
+            "link": SEARCH_URL,
+            "posted": posted
+        }
+
+        jobs.append(job)
+
+    if len(jobs) >= 5:
+        break
 
 with open("jobs.json", "w", encoding="utf-8") as file:
     json.dump(jobs, file, ensure_ascii=False, indent=2)
 
-print("jobs.json created successfully")
+print(f"jobs.json created successfully with {len(jobs)} jobs")
