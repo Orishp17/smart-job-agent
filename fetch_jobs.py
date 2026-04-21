@@ -8,10 +8,9 @@ headers = {
     "User-Agent": "Mozilla/5.0"
 }
 
-def calculate_score(title):
+def score_title(title):
     title_lower = title.lower()
-
-    score = 55
+    score = 50
 
     positive_keywords = {
         "product": 12,
@@ -63,8 +62,55 @@ def calculate_score(title):
     if not any(word in title_lower for word in junior_signals):
         score -= 6
 
-    if "senior" in title_lower and "junior" in title_lower:
-        score -= 10
+    return score
+
+def score_description(text):
+    text_lower = text.lower()
+    score = 0
+
+    positive_keywords = {
+        "sql": 8,
+        "analytics": 7,
+        "analysis": 6,
+        "dashboard": 5,
+        "data": 6,
+        "product": 6,
+        "stakeholders": 5,
+        "cross-functional": 5,
+        "process": 4,
+        "operations": 5,
+        "strategy": 4,
+        "insights": 5,
+        "entry": 8,
+        "junior": 10,
+        "1-2": 6,
+        "0-2": 8,
+        "1-3": 5
+    }
+
+    negative_keywords = {
+        "senior": -12,
+        "director": -15,
+        "vp": -20,
+        "leadership": -10,
+        "5+ years": -15,
+        "7+ years": -20,
+        "10+ years": -25,
+        "head of": -18
+    }
+
+    for keyword, points in positive_keywords.items():
+        if keyword in text_lower:
+            score += points
+
+    for keyword, points in negative_keywords.items():
+        if keyword in text_lower:
+            score += points
+
+    return score
+
+def final_score(title, description):
+    score = score_title(title) + score_description(description)
 
     if score > 100:
         score = 100
@@ -104,7 +150,12 @@ for link in soup.find_all("a"):
     if href and href.startswith("/"):
         full_link = "https://www.jobmaster.co.il" + href
 
-    score = calculate_score(title)
+    card_text = ""
+    parent = link.parent
+    if parent:
+        card_text = parent.get_text(" ", strip=True)
+
+    score = final_score(title, card_text)
 
     job = {
         "id": f"jobmaster_{len(jobs) + 1}",
@@ -115,7 +166,7 @@ for link in soup.find_all("a"):
         "reasons": [
             "נשלף אוטומטית מ-JobMaster",
             "רלוונטי לחיפוש Product Manager",
-            "מועמד לבדיקה ראשונית"
+            "ציון מבוסס על כותרת ותוכן"
         ],
         "link": full_link
     }
