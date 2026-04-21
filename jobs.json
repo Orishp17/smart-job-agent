@@ -37,5 +37,18 @@
       "מתאים למסלול משיק למוצר"
     ],
     "link": "https://example.com/job-posting-3"
+  },
+  {
+    "id": "job_4",
+    "title": "Junior Data Analyst",
+    "company": "Metric Pulse",
+    "location": "Petah Tikva, Israel",
+    "score": "86/100",
+    "reasons": [
+      "תפקיד ג'וניור רלוונטי",
+      "כולל עבודה עם דאטה וניתוח נתונים",
+      "מתאים למסלול קריירה משיק למוצר ואנליזה"
+    ],
+    "link": "https://example.com/job-posting-4"
   }
 ]
