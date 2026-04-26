@@ -21,9 +21,10 @@ MATRIX_HEADERS = {
     "User-Agent": "Mozilla/5.0"
 }
 
-MAX_MATRIX_CATEGORIES = 6
-MAX_MATRIX_JOBS_PER_CATEGORY = 6
-MAX_MATRIX_FINAL_JOBS = 10
+MAX_MATRIX_DIRECT_FROM_HOME = 12
+MAX_MATRIX_CATEGORY_LINKS = 6
+MAX_MATRIX_DIRECT_PER_CATEGORY = 6
+MAX_MATRIX_FINAL_JOBS = 12
 
 CITY_KEYWORDS = {
     "כפר סבא": "כפר סבא",
@@ -503,7 +504,28 @@ def fetch_jobmaster_jobs():
                 "link": full_link
             })
 
+    print(f"JobMaster jobs found: {len(jobs)}")
     return jobs
+
+
+def extract_matrix_direct_links_from_home(soup):
+    links = []
+    seen = set()
+
+    for a in soup.find_all("a", href=True):
+        href = a["href"].strip()
+        full_link = urljoin(MATRIX_JOBS_URL, href)
+
+        if "/jobs/%D7%9E%D7%A9%D7%A8%D7%94/" not in full_link and "/jobs/משרה/" not in full_link:
+            continue
+
+        if full_link in seen:
+            continue
+
+        seen.add(full_link)
+        links.append(full_link)
+
+    return links[:MAX_MATRIX_DIRECT_FROM_HOME]
 
 
 def extract_matrix_category_links(soup):
@@ -523,10 +545,10 @@ def extract_matrix_category_links(soup):
         seen.add(full_link)
         links.append(full_link)
 
-    return links[:MAX_MATRIX_CATEGORIES]
+    return links[:MAX_MATRIX_CATEGORY_LINKS]
 
 
-def extract_matrix_direct_job_links(soup):
+def extract_matrix_direct_links_from_category(soup):
     links = []
     seen = set()
 
@@ -543,20 +565,26 @@ def extract_matrix_direct_job_links(soup):
         seen.add(full_link)
         links.append(full_link)
 
-    return links[:MAX_MATRIX_JOBS_PER_CATEGORY]
+    return links[:MAX_MATRIX_DIRECT_PER_CATEGORY]
 
 
 def fetch_matrix_jobs():
     jobs = []
     seen_ids = set()
+    seen_links = set()
 
     response = requests.get(MATRIX_JOBS_URL, headers=MATRIX_HEADERS, timeout=20)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
+    direct_from_home = extract_matrix_direct_links_from_home(soup)
+    print(f"Matrix direct links from home: {len(direct_from_home)}")
+
+    for link in direct_from_home:
+        seen_links.add(link)
+
     category_links = extract_matrix_category_links(soup)
-    all_job_links = []
-    seen_job_links = set()
+    print(f"Matrix category links found: {len(category_links)}")
 
     for category_link in category_links:
         try:
@@ -566,15 +594,16 @@ def fetch_matrix_jobs():
         except Exception:
             continue
 
-        direct_job_links = extract_matrix_direct_job_links(category_soup)
+        direct_links = extract_matrix_direct_links_from_category(category_soup)
+        print(f"Matrix direct links from category {category_link}: {len(direct_links)}")
 
-        for job_link in direct_job_links:
-            if job_link in seen_job_links:
-                continue
-            seen_job_links.add(job_link)
-            all_job_links.append(job_link)
+        for link in direct_links:
+            seen_links.add(link)
 
-    for full_link in all_job_links[:MAX_MATRIX_FINAL_JOBS]:
+    all_job_links = list(seen_links)[:MAX_MATRIX_FINAL_JOBS]
+    print(f"Matrix final direct links to inspect: {len(all_job_links)}")
+
+    for full_link in all_job_links:
         try:
             details_response = requests.get(full_link, headers=MATRIX_HEADERS, timeout=20)
             details_response.raise_for_status()
@@ -626,6 +655,7 @@ def fetch_matrix_jobs():
             "link": full_link
         })
 
+    print(f"Matrix jobs found: {len(jobs)}")
     return jobs
 
 
