@@ -1,6 +1,6 @@
 [
   {
-    "id": "850536066188",
+    "id": "434437406821",
     "title": "Data & AI Product Manager",
     "company": "JobMaster listing",
     "location": "פתח תקווה",
@@ -9,7 +9,7 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9717613"
   },
   {
-    "id": "837190280696",
+    "id": "110478823986",
     "title": "דרושים Junior Product Manager",
     "company": "JobMaster listing",
     "location": "ישראל",
@@ -18,16 +18,7 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Junior%20Product%20Manager"
   },
   {
-    "id": "511254514187",
-    "title": "Product Manager",
-    "company": "JobMaster listing",
-    "location": "תל אביב",
-    "score": "91/100",
-    "reasons": [],
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9734873"
-  },
-  {
-    "id": "104135618879",
+    "id": "730988059749",
     "title": "דרוש/ה מנהל/ת מוצר (Product Manager) – AI / Data",
     "company": "JobMaster listing",
     "location": "ירושלים",
@@ -36,7 +27,7 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9667694"
   },
   {
-    "id": "878006694240",
+    "id": "839982313409",
     "title": "לחברה פיננסית מובילה בתל אביב דרוש/ה Data Research Analyst למחלקת ניהול סיכונים",
     "company": "JobMaster listing",
     "location": "תל אביב",
@@ -45,7 +36,7 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9730163"
   },
   {
-    "id": "301800343388",
+    "id": "350804838577",
     "title": "מנהל/ת מוצר (Product Manager)  תחום הנעלה וביגוד עבודה",
     "company": "JobMaster listing",
     "location": "חולון",
@@ -54,7 +45,7 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9694678"
   },
   {
-    "id": "567239327303",
+    "id": "581514326921",
     "title": "בוגרים/ות מצטיינים/ות לתפקידי Data Analyst",
     "company": "JobMaster listing",
     "location": "תל אביב",
@@ -63,7 +54,7 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9520366"
   },
   {
-    "id": "205591307061",
+    "id": "252558883831",
     "title": "דרוש/ה Data Analyst  למחלקת הייעוץ והפרויקטים בראשון לציון",
     "company": "JobMaster listing",
     "location": "ראשון לציון",
@@ -72,7 +63,7 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9697086"
   },
   {
-    "id": "556031750804",
+    "id": "487907334471",
     "title": "דרושים אקדמאים/יות מצטיינים/ות למשרת Data & BI Analyst",
     "company": "JobMaster listing",
     "location": "תל אביב",
@@ -81,7 +72,7 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9520425"
   },
   {
-    "id": "642544447847",
+    "id": "332802457867",
     "title": "בוגרים/ות מצטיינים/ות לתפקידי Data Analyst",
     "company": "JobMaster listing",
     "location": "תל אביב",
@@ -90,7 +81,7 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9520433"
   },
   {
-    "id": "124664809309",
+    "id": "753603341776",
     "title": "דרושים Product Manager",
     "company": "JobMaster listing",
     "location": "ישראל",
@@ -99,7 +90,7 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Product%20Manager"
   },
   {
-    "id": "562281789360",
+    "id": "206871469690",
     "title": "דרושים Product Operations",
     "company": "JobMaster listing",
     "location": "ישראל",
@@ -108,7 +99,7 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Product%20Operations"
   },
   {
-    "id": "211024354830",
+    "id": "485487225553",
     "title": "דרושים Data Analyst",
     "company": "JobMaster listing",
     "location": "ישראל",
@@ -117,7 +108,7 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Data%20Analyst"
   },
   {
-    "id": "797782127795",
+    "id": "791409118532",
     "title": "BI Analyst (Mid-Level)",
     "company": "JobMaster listing",
     "location": "ראשון לציון",
@@ -126,12 +117,21 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9735193"
   },
   {
-    "id": "683772140500",
+    "id": "416898257562",
     "title": "דרוש/ה אנליסט עסקי/פלנר/ית ( Business Analyst/Planner)לחברה יבואנית בקרית אריה",
     "company": "JobMaster listing",
     "location": "פתח תקווה",
     "score": "72/100",
     "reasons": [],
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9730797"
+  },
+  {
+    "id": "246804148067",
+    "title": "Are you a sharp, business-oriented FP&A professional",
+    "company": "JobMaster listing",
+    "location": "נתניה",
+    "score": "70/100",
+    "reasons": [],
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9727480"
   }
 ]
