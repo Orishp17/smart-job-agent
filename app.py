@@ -51,4 +51,3 @@ if new_jobs:
 
 else:
     print("No new jobs to send.")
-
