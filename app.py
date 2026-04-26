@@ -1,422 +1,157 @@
-import os
+import asyncio
 import json
-import textwrap
-import requests
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+import os
+from pathlib import Path
 
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, InputFile
 
-JOBS_FILE = "jobs.json"
-SENT_JOBS_FILE = "sent_jobs.json"
-OUTPUT_DIR = "generated_cards"
-ASSETS_DIR = "assets"
+BASE_DIR = Path(__file__).resolve().parent
+JOBS_FILE = BASE_DIR / "jobs.json"
+SENT_FILE = BASE_DIR / "sent_jobs.json"
+ASSETS_DIR = BASE_DIR / "assets"
 
-CARD_WIDTH = 1080
-CARD_HEIGHT = 1080
+JOBMASTER_IMAGE = ASSETS_DIR / "jobmaster_logo.png"
+MATRIX_IMAGE = ASSETS_DIR / "matrix_logo.png"
 
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+MAX_JOBS_PER_RUN = 20
 
 
-def load_json_file(path, default_value):
-    if not os.path.exists(path):
+def load_json(file_path, default_value):
+    if not file_path.exists():
         return default_value
 
     try:
-        with open(path, "r", encoding="utf-8") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             return json.load(file)
     except Exception:
         return default_value
 
 
-def save_json_file(path, data):
-    with open(path, "w", encoding="utf-8") as file:
+def save_json(file_path, data):
+    with open(file_path, "w", encoding="utf-8") as file:
         json.dump(data, file, ensure_ascii=False, indent=2)
 
 
-def get_source_name(job):
-    raw_source = (job.get("source") or job.get("company") or "").strip().lower()
+def clean_text(value, default="לא צוין"):
+    if value is None:
+        return default
 
-    if "matrix" in raw_source:
+    text = str(value).strip()
+    if not text:
+        return default
+
+    return text
+
+
+def get_job_id(job):
+    return clean_text(job.get("id"), "")
+
+
+def get_source(job):
+    source = clean_text(job.get("source"), "")
+    company = clean_text(job.get("company"), "")
+
+    combined = f"{source} {company}".lower()
+
+    if "matrix" in combined or "מטריקס" in combined:
         return "Matrix"
 
-    if "jobmaster" in raw_source:
-        return "JobMaster"
+    return "JobMaster"
 
-    return "Unknown"
 
+def get_source_image(source):
+    if source == "Matrix":
+        return MATRIX_IMAGE
+    return JOBMASTER_IMAGE
 
-def get_location(job):
-    location = (job.get("location") or "").strip()
-    return location if location else "ישראל"
 
-
-def get_salary(job):
-    salary = (job.get("salary") or "").strip()
-    return salary if salary else "טווח שכר לא מצוין"
-
-
-def get_score(job):
-    score = (job.get("score") or "").strip()
-    return score if score else "0/100"
-
-
-def get_score_number(score_text):
-    try:
-        return int(str(score_text).split("/")[0].strip())
-    except Exception:
-        return 0
-
-
-def get_job_link(job):
-    return (job.get("link") or "").strip()
-
-
-def get_logo_path(source_name):
-    if source_name == "JobMaster":
-        return os.path.join(ASSETS_DIR, "jobmaster_logo.png")
-
-    if source_name == "Matrix":
-        return os.path.join(ASSETS_DIR, "matrix_logo.png")
-
-    return None
-
-
-def get_theme(source_name):
-    if source_name == "Matrix":
-        return {
-            "bg_top": (236, 243, 255),
-            "bg_bottom": (214, 229, 255),
-            "main_card": (255, 255, 255),
-            "primary": (53, 96, 222),
-            "primary_soft": (228, 236, 255),
-            "text": (24, 32, 48),
-            "muted": (103, 113, 132),
-            "line": (226, 232, 243),
-            "score_bg": (236, 243, 255),
-            "chip_bg": (230, 238, 255),
-            "shadow": (0, 0, 0, 42),
-        }
-
-    return {
-        "bg_top": (255, 246, 236),
-        "bg_bottom": (255, 228, 198),
-        "main_card": (255, 255, 255),
-        "primary": (231, 104, 46),
-        "primary_soft": (255, 236, 220),
-        "text": (40, 32, 28),
-        "muted": (120, 103, 92),
-        "line": (243, 229, 217),
-        "score_bg": (255, 244, 232),
-        "chip_bg": (255, 240, 226),
-        "shadow": (0, 0, 0, 42),
-    }
-
-
-def get_font(size, bold=False):
-    candidates = []
-
-    if bold:
-        candidates = [
-            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-            "/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf",
-            "C:/Windows/Fonts/arialbd.ttf",
-            "/Library/Fonts/Arial Bold.ttf",
-        ]
-    else:
-        candidates = [
-            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-            "/usr/share/fonts/dejavu/DejaVuSans.ttf",
-            "C:/Windows/Fonts/arial.ttf",
-            "/Library/Fonts/Arial.ttf",
-        ]
-
-    for path in candidates:
-        if os.path.exists(path):
-            return ImageFont.truetype(path, size)
-
-    return ImageFont.load_default()
-
-
-FONT_KICKER = get_font(28, bold=True)
-FONT_TITLE = get_font(60, bold=True)
-FONT_LABEL = get_font(24, bold=True)
-FONT_VALUE = get_font(32, bold=False)
-FONT_VALUE_BOLD = get_font(32, bold=True)
-FONT_SMALL = get_font(22, bold=False)
-FONT_SMALL_BOLD = get_font(22, bold=True)
-FONT_SCORE = get_font(72, bold=True)
-FONT_SCORE_SMALL = get_font(26, bold=True)
-FONT_BUTTON = get_font(30, bold=True)
-
-
-def create_gradient_background(width, height, top_color, bottom_color):
-    image = Image.new("RGB", (width, height), top_color)
-    draw = ImageDraw.Draw(image)
-
-    for y in range(height):
-        ratio = y / float(height)
-        r = int(top_color[0] * (1 - ratio) + bottom_color[0] * ratio)
-        g = int(top_color[1] * (1 - ratio) + bottom_color[1] * ratio)
-        b = int(top_color[2] * (1 - ratio) + bottom_color[2] * ratio)
-        draw.line([(0, y), (width, y)], fill=(r, g, b))
-
-    return image
-
-
-def add_soft_background_shapes(image):
-    overlay = Image.new("RGBA", image.size, (0, 0, 0, 0))
-    draw = ImageDraw.Draw(overlay)
-
-    draw.ellipse((-120, -40, 320, 360), fill=(255, 255, 255, 45))
-    draw.ellipse((770, 40, 1160, 390), fill=(255, 255, 255, 35))
-    draw.ellipse((780, 820, 1180, 1180), fill=(255, 255, 255, 30))
-    draw.ellipse((-90, 820, 220, 1110), fill=(255, 255, 255, 22))
-
-    return Image.alpha_composite(image.convert("RGBA"), overlay).convert("RGB")
-
-
-def draw_shadow(base_image, box, radius, shadow_color):
-    shadow_layer = Image.new("RGBA", base_image.size, (0, 0, 0, 0))
-    shadow_draw = ImageDraw.Draw(shadow_layer)
-
-    x1, y1, x2, y2 = box
-    shadow_draw.rounded_rectangle(
-        (x1 + 8, y1 + 12, x2 + 8, y2 + 12),
-        radius=radius,
-        fill=shadow_color
-    )
-
-    shadow_layer = shadow_layer.filter(ImageFilter.GaussianBlur(18))
-    result = Image.alpha_composite(base_image.convert("RGBA"), shadow_layer)
-    return result.convert("RGB")
-
-
-def fit_text_lines(draw, text, font, max_width, max_lines):
-    if not text:
-        return [""]
-
-    words = text.split()
-    lines = []
-    current_line = ""
-
-    for word in words:
-        test_line = word if not current_line else current_line + " " + word
-        bbox = draw.textbbox((0, 0), test_line, font=font)
-        line_width = bbox[2] - bbox[0]
-
-        if line_width <= max_width:
-            current_line = test_line
-        else:
-            if current_line:
-                lines.append(current_line)
-            current_line = word
-
-    if current_line:
-        lines.append(current_line)
-
-    if len(lines) <= max_lines:
-        return lines
-
-    lines = lines[:max_lines]
-    last_line = lines[-1]
-
-    while True:
-        candidate = last_line + "..."
-        bbox = draw.textbbox((0, 0), candidate, font=font)
-        line_width = bbox[2] - bbox[0]
-
-        if line_width <= max_width or len(last_line.split()) <= 1:
-            lines[-1] = candidate
-            break
-
-        last_line = " ".join(last_line.split()[:-1])
-
-    return lines
-
-
-def paste_logo(base_image, logo_path, x, y, max_width, max_height):
-    if not logo_path or not os.path.exists(logo_path):
-        return
-
-    logo = Image.open(logo_path).convert("RGBA")
-    width, height = logo.size
-
-    scale = min(max_width / width, max_height / height)
-    new_width = max(1, int(width * scale))
-    new_height = max(1, int(height * scale))
-
-    logo = logo.resize((new_width, new_height), Image.LANCZOS)
-    base_image.paste(logo, (x, y), logo)
-
-
-def draw_chip(draw, x, y, text, theme):
-    padding_x = 22
-    padding_y = 14
-
-    bbox = draw.textbbox((0, 0), text, font=FONT_SMALL_BOLD)
-    text_width = bbox[2] - bbox[0]
-    text_height = bbox[3] - bbox[1]
-
-    chip_width = text_width + padding_x * 2
-    chip_height = text_height + padding_y * 2
-
-    draw.rounded_rectangle(
-        (x, y, x + chip_width, y + chip_height),
-        radius=22,
-        fill=theme["chip_bg"]
-    )
-
-    draw.text(
-        (x + padding_x, y + padding_y - 2),
-        text,
-        font=FONT_SMALL_BOLD,
-        fill=theme["primary"]
-    )
-
-
-def draw_info_box(draw, x, y, width, height, label, value, theme):
-    draw.rounded_rectangle(
-        (x, y, x + width, y + height),
-        radius=28,
-        fill=theme["primary_soft"]
-    )
-
-    draw.text((x + 24, y + 18), label, font=FONT_LABEL, fill=theme["muted"])
-
-    lines = fit_text_lines(draw, value, FONT_VALUE, width - 48, 2)
-    current_y = y + 54
-
-    for line in lines:
-        draw.text((x + 24, current_y), line, font=FONT_VALUE, fill=theme["text"])
-        current_y += 36
-
-
-def create_job_card(job):
-    source_name = get_source_name(job)
-    location = get_location(job)
-    salary = get_salary(job)
-    score_text = get_score(job)
-    score_number = get_score_number(score_text)
-    title = (job.get("title") or "Untitled Job").strip()
-
-    theme = get_theme(source_name)
-    logo_path = get_logo_path(source_name)
-
-    image = create_gradient_background(CARD_WIDTH, CARD_HEIGHT, theme["bg_top"], theme["bg_bottom"])
-    image = add_soft_background_shapes(image)
-    image = draw_shadow(image, (52, 58, CARD_WIDTH - 52, CARD_HEIGHT - 58), 42, theme["shadow"])
-
-    draw = ImageDraw.Draw(image)
-
-    main_box = (52, 58, CARD_WIDTH - 52, CARD_HEIGHT - 58)
-    draw.rounded_rectangle(main_box, radius=42, fill=theme["main_card"])
-
-    draw_chip(draw, 88, 92, "NEW JOB", theme)
-
-    paste_logo(image, logo_path, CARD_WIDTH - 320, 92, 180, 70)
-
-    title_lines = fit_text_lines(draw, title, FONT_TITLE, 760, 3)
-    title_y = 220
-
-    for line in title_lines:
-        draw.text((88, title_y), line, font=FONT_TITLE, fill=theme["text"])
-        title_y += 72
-
-    draw.text((88, title_y + 8), source_name, font=FONT_VALUE_BOLD, fill=theme["primary"])
-
-    score_box = (820, 238, 960, 388)
-    draw.rounded_rectangle(score_box, radius=28, fill=theme["score_bg"])
-    draw.text((848, 258), "Score", font=FONT_SCORE_SMALL, fill=theme["muted"])
-    draw.text((846, 290), str(score_number), font=FONT_SCORE, fill=theme["primary"])
-
-    info_y = 455
-    box_gap = 22
-    box_width = 430
-    box_height = 140
-
-    draw_info_box(draw, 88, info_y, box_width, box_height, "Location", location, theme)
-    draw_info_box(draw, 562, info_y, box_width, box_height, "Salary", salary, theme)
-    draw_info_box(draw, 88, info_y + box_height + box_gap, box_width, box_height, "Source", source_name, theme)
-    draw_info_box(draw, 562, info_y + box_height + box_gap, box_width, box_height, "Match", score_text, theme)
-
-    divider_y = 845
-    draw.line((88, divider_y, CARD_WIDTH - 88, divider_y), fill=theme["line"], width=3)
-
-    button_box = (88, 885, CARD_WIDTH - 88, 980)
-    draw.rounded_rectangle(button_box, radius=28, fill=theme["primary"])
-
-    button_text = "Open job from Telegram"
-    bbox = draw.textbbox((0, 0), button_text, font=FONT_BUTTON)
-    text_width = bbox[2] - bbox[0]
-    text_x = (CARD_WIDTH - text_width) / 2
-    draw.text((text_x, 915), button_text, font=FONT_BUTTON, fill=(255, 255, 255))
-
-    footer_text = "Job Hunter By Ori"
-    draw.text((88, 1010), footer_text, font=FONT_SMALL, fill=theme["muted"])
-
-    file_name = f"{job.get('id', 'job')}.jpg"
-    output_path = os.path.join(OUTPUT_DIR, file_name)
-    image.save(output_path, format="JPEG", quality=95, optimize=True)
-
-    return output_path
-
-
-def send_job_photo(job, image_path):
-    title = (job.get("title") or "Untitled Job").strip()
-    source_name = get_source_name(job)
-    location = get_location(job)
-    salary = get_salary(job)
-    score = get_score(job)
-    link = get_job_link(job)
+def build_caption(job):
+    title = clean_text(job.get("title"), "ללא כותרת")
+    company = clean_text(job.get("company"), "לא צוין")
+    location = clean_text(job.get("location"), "ישראל")
+    salary = clean_text(job.get("salary"), "טווח השכר לא מצוין")
+    score = clean_text(job.get("score"), "לא צוין")
+    source = get_source(job)
 
     caption = (
-        f"נמצאה משרה חדשה 🚀\n\n"
-        f"תפקיד: {title}\n"
-        f"חברה: {source_name}\n"
-        f"מיקום: {location}\n"
-        f"שכר: {salary}\n"
-        f"ציון התאמה: {score}"
+        "🚀 נמצאה משרה חדשה\n\n"
+        f"🎯 תפקיד: {title}\n"
+        f"🏢 חברה: {company}\n"
+        f"📍 מיקום: {location}\n"
+        f"💰 שכר: {salary}\n"
+        f"📊 ציון התאמה: {score}\n"
+        f"🌐 מקור: {source}\n\n"
+        "👇 לחץ על הכפתור למטה כדי לצפות במשרה"
     )
 
-    payload = {
-        "chat_id": CHAT_ID,
-        "caption": caption,
-        "reply_markup": json.dumps({
-            "inline_keyboard": [
-                [
-                    {
-                        "text": "לצפייה במשרה",
-                        "url": link
-                    }
-                ]
-            ]
-        })
-    }
+    if len(caption) > 1024:
+        short_title = title[:120] + "..." if len(title) > 120 else title
+        short_company = company[:80] + "..." if len(company) > 80 else company
 
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
-
-    with open(image_path, "rb") as photo_file:
-        response = requests.post(
-            url,
-            data=payload,
-            files={"photo": photo_file},
-            timeout=60
+        caption = (
+            "🚀 נמצאה משרה חדשה\n\n"
+            f"🎯 תפקיד: {short_title}\n"
+            f"🏢 חברה: {short_company}\n"
+            f"📍 מיקום: {location}\n"
+            f"💰 שכר: {salary}\n"
+            f"📊 ציון התאמה: {score}\n"
+            f"🌐 מקור: {source}\n\n"
+            "👇 לחץ על הכפתור למטה כדי לצפות במשרה"
         )
 
-    print("Status code:", response.status_code)
-    print("Response:", response.text)
-
-    return response.ok
+    return caption
 
 
-def main():
-    if not BOT_TOKEN or not CHAT_ID:
-        print("Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID")
-        return
+async def send_job(bot, chat_id, job):
+    source = get_source(job)
+    image_path = get_source_image(source)
+    caption = build_caption(job)
+    link = clean_text(job.get("link"), "")
 
-    jobs = load_json_file(JOBS_FILE, [])
-    sent_jobs = load_json_file(SENT_JOBS_FILE, [])
+    buttons = []
+    if link:
+        buttons.append([InlineKeyboardButton("לצפייה במשרה", url=link)])
+
+    reply_markup = InlineKeyboardMarkup(buttons) if buttons else None
+
+    if image_path.exists():
+        try:
+            with open(image_path, "rb") as photo_file:
+                await bot.send_photo(
+                    chat_id=chat_id,
+                    photo=InputFile(photo_file),
+                    caption=caption,
+                    reply_markup=reply_markup,
+                )
+            return True
+        except Exception as error:
+            print(f"Error sending photo for job {job.get('id')}: {error}")
+
+    try:
+        fallback_text = caption
+        if link:
+            fallback_text += f"\n\n🔗 קישור: {link}"
+
+        await bot.send_message(
+            chat_id=chat_id,
+            text=fallback_text,
+            reply_markup=reply_markup
+        )
+        return True
+    except Exception as error:
+        print(f"Error sending text fallback for job {job.get('id')}: {error}")
+        return False
+
+
+async def main():
+    token = os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID")
+
+    if not token or not chat_id:
+        raise ValueError("Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID")
+
+    jobs = load_json(JOBS_FILE, [])
+    sent_jobs = load_json(SENT_FILE, [])
 
     if not isinstance(jobs, list):
         jobs = []
@@ -424,26 +159,38 @@ def main():
     if not isinstance(sent_jobs, list):
         sent_jobs = []
 
-    new_jobs = [job for job in jobs if job.get("id") not in sent_jobs]
+    sent_set = set(str(item) for item in sent_jobs)
+    jobs_to_send = []
 
-    if not new_jobs:
+    for job in jobs:
+        job_id = get_job_id(job)
+        if not job_id:
+            continue
+        if job_id in sent_set:
+            continue
+        jobs_to_send.append(job)
+
+    if not jobs_to_send:
         print("No new jobs to send.")
         return
 
-    updated_sent_jobs = list(sent_jobs)
+    bot = Bot(token=token)
+    sent_any = False
 
-    for job in new_jobs:
-        try:
-            image_path = create_job_card(job)
-            success = send_job_photo(job, image_path)
+    for job in jobs_to_send[:MAX_JOBS_PER_RUN]:
+        was_sent = await send_job(bot, chat_id, job)
 
-            if success:
-                updated_sent_jobs.append(job.get("id"))
-        except Exception as error:
-            print(f"Error sending job {job.get('id')}: {error}")
+        if was_sent:
+            job_id = get_job_id(job)
+            sent_set.add(job_id)
+            sent_any = True
 
-    save_json_file(SENT_JOBS_FILE, updated_sent_jobs)
+    if sent_any:
+        save_json(SENT_FILE, sorted(sent_set))
+        print(f"Done. sent_jobs.json updated with {len(sent_set)} job IDs.")
+    else:
+        print("No jobs were sent successfully.")
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
