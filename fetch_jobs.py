@@ -95,19 +95,22 @@ ARAB_CITY_KEYWORDS = [
 ]
 
 RELEVANT_WORDS = ["product", "manager", "business", "analyst", "data", "operations"]
+
 BLOCKED_TITLE_KEYWORDS = ["senior", "lead", "director", "vp", "head", "principal", "chief"]
 BLOCKED_DESCRIPTION_KEYWORDS = [
     "5+ years", "7+ years", "10+ years",
     "senior", "director", "vp", "head of", "leadership"
 ]
 
+
 def clean_text(text):
     return re.sub(r"\s+", " ", text or "").strip()
+
 
 def normalize_matrix_title(title):
     title = clean_text(title)
 
-    separators = ["|", "/", "•"]
+    separators = ["|", "•"]
     for sep in separators:
         if sep in title:
             title = title.split(sep)[0].strip()
@@ -115,30 +118,28 @@ def normalize_matrix_title(title):
     title = re.sub(r"\bמשרה\s*מס['\"]?\s*\d+\b", "", title, flags=re.IGNORECASE)
     title = re.sub(r"\bjob\s*id[:\s-]*\d+\b", "", title, flags=re.IGNORECASE)
     title = re.sub(r"\([^)]*\)", "", title)
-    title = re.sub(r"\s*-\s*", " - ", title)
     title = re.sub(r"\s{2,}", " ", title).strip(" -")
 
-    long_prefixes = [
+    prefixes = [
         "דרוש/ה",
         "דרושים/ות",
         "למטריקס דרוש/ה",
         "למטריקס דרושים/ות"
     ]
 
-    for prefix in long_prefixes:
+    for prefix in prefixes:
         if title.startswith(prefix):
             title = title[len(prefix):].strip(" -")
 
     normalized_candidates = [
-        ("product manager", "Product Manager"),
         ("junior product manager", "Junior Product Manager"),
+        ("product manager", "Product Manager"),
         ("business analyst", "Business Analyst"),
         ("data analyst", "Data Analyst"),
         ("bi analyst", "BI Analyst"),
         ("product operations", "Product Operations"),
         ("operations analyst", "Operations Analyst"),
         ("business operations", "Business Operations"),
-        ("pm", "PM"),
     ]
 
     title_lower = title.lower()
@@ -147,6 +148,7 @@ def normalize_matrix_title(title):
             return normalized
 
     return title
+
 
 def extract_location(text):
     text_lower = (text or "").lower()
@@ -163,6 +165,7 @@ def extract_location(text):
 
     return "ישראל"
 
+
 def is_blocked_location(location, text):
     text_lower = (text or "").lower()
 
@@ -174,6 +177,7 @@ def is_blocked_location(location, text):
             return True
 
     return False
+
 
 def extract_salary(text):
     text = text or ""
@@ -219,6 +223,7 @@ def extract_salary(text):
         "min": None,
         "max": None
     }
+
 
 def score_title(title):
     title_lower = title.lower()
@@ -272,6 +277,7 @@ def score_title(title):
 
     return score
 
+
 def score_description(text):
     text_lower = (text or "").lower()
     score = 0
@@ -312,6 +318,7 @@ def score_description(text):
 
     return score
 
+
 def score_experience(text):
     text = text or ""
     text_lower = text.lower()
@@ -336,6 +343,7 @@ def score_experience(text):
 
     return score
 
+
 def score_degree(text):
     text_lower = (text or "").lower()
     score = 0
@@ -348,6 +356,7 @@ def score_degree(text):
 
     return score
 
+
 def score_location(location):
     if location in {"כפר סבא", "רעננה"}:
         return 14
@@ -359,6 +368,7 @@ def score_location(location):
         return 0
     return -6
 
+
 def score_salary(salary_info):
     if salary_info["max"] is None:
         return 0
@@ -367,6 +377,7 @@ def score_salary(salary_info):
     if salary_info["max"] >= 10000:
         return 0
     return -10
+
 
 def score_seniority(title, text):
     combined = (title + " " + (text or "")).lower()
@@ -387,11 +398,13 @@ def score_seniority(title, text):
 
     return score
 
+
 def add_variation(title, description):
     combined = (title + " " + (description or "")).lower()
     unique_bonus = len(set(combined.split())) % 7
     length_bonus = min(len(combined) // 120, 4)
     return unique_bonus + length_bonus
+
 
 def final_score(title, description, location, salary_info):
     score = score_title(title)
@@ -410,13 +423,16 @@ def final_score(title, description, location, salary_info):
 
     return f"{score}/100"
 
+
 def build_job_id(source, title, link):
     base = f"{source}|{title.strip().lower()}|{link.strip().lower()}"
     return str(abs(hash(base)))[:12]
 
+
 def is_relevant_title(title):
     title_lower = title.lower()
     return any(word in title_lower for word in RELEVANT_WORDS)
+
 
 def is_blocked(title, text):
     title_lower = title.lower()
@@ -430,6 +446,7 @@ def is_blocked(title, text):
 
     return False
 
+
 def fetch_jobmaster_jobs():
     jobs = []
     seen_ids = set()
@@ -440,16 +457,14 @@ def fetch_jobmaster_jobs():
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
 
-        for link in soup.find_all("a"):
+        for link in soup.find_all("a", href=True):
             title = clean_text(link.get_text(" ", strip=True))
-            href = link.get("href")
+            href = link.get("href", "")
 
             if not title or len(title) < 8:
                 continue
 
-            full_link = href if href else search_url
-            if href and href.startswith("/"):
-                full_link = "https://www.jobmaster.co.il" + href
+            full_link = urljoin("https://www.jobmaster.co.il/", href)
 
             parent = link.parent
             card_text = clean_text(parent.get_text(" ", strip=True) if parent else "")
@@ -472,19 +487,74 @@ def fetch_jobmaster_jobs():
 
             seen_ids.add(job_id)
 
-            job = {
+            jobs.append({
                 "id": job_id,
                 "title": title,
                 "company": "JobMaster",
+                "source": "JobMaster",
                 "location": location,
                 "salary": salary_info["text"],
                 "score": final_score(title, card_text, location, salary_info),
-                "reasons": [],
                 "link": full_link
-            }
-            jobs.append(job)
+            })
 
     return jobs
+
+
+def extract_matrix_cards(soup):
+    cards = []
+
+    # ניסיון 1 - בלוקים עם קישור "פרטי המשרה"
+    for a in soup.find_all("a", href=True):
+        anchor_text = clean_text(a.get_text(" ", strip=True))
+        href = a["href"]
+        full_link = urljoin(MATRIX_JOBS_URL, href)
+
+        if "פרטי המשרה" not in anchor_text and "detail" not in href.lower():
+            continue
+
+        container = a.find_parent(["article", "div", "li", "section"])
+        if not container:
+            continue
+
+        card_text = clean_text(container.get_text(" ", strip=True))
+        cards.append({
+            "title": "",
+            "link": full_link,
+            "text": card_text
+        })
+
+    # ניסיון 2 - קישורים עם טייטל רלוונטי
+    for a in soup.find_all("a", href=True):
+        title = clean_text(a.get_text(" ", strip=True))
+        href = a["href"]
+        full_link = urljoin(MATRIX_JOBS_URL, href)
+
+        if not title or len(title) < 8:
+            continue
+
+        if not is_relevant_title(title):
+            continue
+
+        if "/jobs/" not in full_link and "matrix.co.il" not in full_link:
+            continue
+
+        container = a.find_parent(["article", "div", "li", "section"])
+        text = clean_text(container.get_text(" ", strip=True) if container else title)
+
+        cards.append({
+            "title": title,
+            "link": full_link,
+            "text": text
+        })
+
+    # מניעת כפילויות לפי link
+    unique = {}
+    for card in cards:
+        unique[card["link"]] = card
+
+    return list(unique.values())
+
 
 def fetch_matrix_jobs():
     jobs = []
@@ -494,48 +564,47 @@ def fetch_matrix_jobs():
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
-    candidate_links = []
-    for a in soup.find_all("a", href=True):
-        text = clean_text(a.get_text(" ", strip=True))
-        href = a["href"]
-        full_link = urljoin(MATRIX_JOBS_URL, href)
+    matrix_cards = extract_matrix_cards(soup)
 
-        if text == "פרטי המשרה":
-            candidate_links.append((text, full_link, a))
-        elif is_relevant_title(text):
-            candidate_links.append((text, full_link, a))
+    for card in matrix_cards:
+        full_link = card["link"]
+        list_text = clean_text(card["text"])
+        title = clean_text(card["title"])
 
-    for text, full_link, a in candidate_links:
-        parent = a.parent
-        card_text = clean_text(parent.get_text(" ", strip=True) if parent else "")
+        details_text = list_text
+        details_title = title
 
-        title = text
-        if title == "פרטי המשרה":
-            block_text = card_text.replace("פרטי המשרה", "").strip()
-            lines = [clean_text(x) for x in block_text.split("  ") if clean_text(x)]
-            if lines:
-                title = lines[0]
-
-        title = normalize_matrix_title(title)
-
-        if not title or len(title) < 8:
-            continue
-
-        if not is_relevant_title(title):
-            continue
-
-        details_text = card_text
         try:
             details_response = requests.get(full_link, headers=MATRIX_HEADERS, timeout=30)
-            if details_response.ok:
-                details_soup = BeautifulSoup(details_response.text, "html.parser")
-                details_text = clean_text(details_soup.get_text(" ", strip=True))
+            details_response.raise_for_status()
+            details_soup = BeautifulSoup(details_response.text, "html.parser")
+
+            details_text = clean_text(details_soup.get_text(" ", strip=True))
+
+            page_title = ""
+            if details_soup.title and details_soup.title.string:
+                page_title = clean_text(details_soup.title.string)
+
+            h1 = details_soup.find("h1")
+            if h1:
+                details_title = clean_text(h1.get_text(" ", strip=True))
+            elif page_title:
+                details_title = page_title
+
         except Exception:
             pass
 
-        combined_text = clean_text(card_text + " " + details_text)
+        final_title = normalize_matrix_title(details_title or title or list_text)
 
-        if is_blocked(title, combined_text):
+        if not final_title or len(final_title) < 8:
+            continue
+
+        if not is_relevant_title(final_title):
+            continue
+
+        combined_text = clean_text(list_text + " " + details_text)
+
+        if is_blocked(final_title, combined_text):
             continue
 
         location = extract_location(combined_text)
@@ -544,44 +613,49 @@ def fetch_matrix_jobs():
 
         salary_info = extract_salary(combined_text)
 
-        job_id = build_job_id("Matrix", title, full_link)
+        job_id = build_job_id("Matrix", final_title, full_link)
         if job_id in seen_ids:
             continue
 
         seen_ids.add(job_id)
 
-        job = {
+        jobs.append({
             "id": job_id,
-            "title": title,
+            "title": final_title,
             "company": "Matrix",
+            "source": "Matrix",
             "location": location,
             "salary": salary_info["text"],
-            "score": final_score(title, combined_text, location, salary_info),
-            "reasons": [],
+            "score": final_score(final_title, combined_text, location, salary_info),
             "link": full_link
-        }
-        jobs.append(job)
+        })
 
     return jobs
 
-all_jobs = []
-all_jobs.extend(fetch_jobmaster_jobs())
-all_jobs.extend(fetch_matrix_jobs())
 
-unique_jobs = {}
-for job in all_jobs:
-    unique_jobs[job["id"]] = job
+def main():
+    all_jobs = []
+    all_jobs.extend(fetch_jobmaster_jobs())
+    all_jobs.extend(fetch_matrix_jobs())
 
-final_jobs = list(unique_jobs.values())
-final_jobs = sorted(
-    final_jobs,
-    key=lambda job: int(job["score"].split("/")[0]),
-    reverse=True
-)
+    unique_jobs = {}
+    for job in all_jobs:
+        unique_jobs[job["id"]] = job
 
-final_jobs = final_jobs[:20]
+    final_jobs = list(unique_jobs.values())
+    final_jobs = sorted(
+        final_jobs,
+        key=lambda job: int(job["score"].split("/")[0]),
+        reverse=True
+    )
 
-with open("jobs.json", "w", encoding="utf-8") as file:
-    json.dump(final_jobs, file, ensure_ascii=False, indent=2)
+    final_jobs = final_jobs[:20]
 
-print(f"jobs.json created successfully with {len(final_jobs)} jobs")
+    with open("jobs.json", "w", encoding="utf-8") as file:
+        json.dump(final_jobs, file, ensure_ascii=False, indent=2)
+
+    print(f"jobs.json created successfully with {len(final_jobs)} jobs")
+
+
+if __name__ == "__main__":
+    main()
