@@ -104,6 +104,50 @@ BLOCKED_DESCRIPTION_KEYWORDS = [
 def clean_text(text):
     return re.sub(r"\s+", " ", text or "").strip()
 
+def normalize_matrix_title(title):
+    title = clean_text(title)
+
+    separators = ["|", "/", "•"]
+    for sep in separators:
+        if sep in title:
+            title = title.split(sep)[0].strip()
+
+    title = re.sub(r"\bמשרה\s*מס['\"]?\s*\d+\b", "", title, flags=re.IGNORECASE)
+    title = re.sub(r"\bjob\s*id[:\s-]*\d+\b", "", title, flags=re.IGNORECASE)
+    title = re.sub(r"\([^)]*\)", "", title)
+    title = re.sub(r"\s*-\s*", " - ", title)
+    title = re.sub(r"\s{2,}", " ", title).strip(" -")
+
+    long_prefixes = [
+        "דרוש/ה",
+        "דרושים/ות",
+        "למטריקס דרוש/ה",
+        "למטריקס דרושים/ות"
+    ]
+
+    for prefix in long_prefixes:
+        if title.startswith(prefix):
+            title = title[len(prefix):].strip(" -")
+
+    normalized_candidates = [
+        ("product manager", "Product Manager"),
+        ("junior product manager", "Junior Product Manager"),
+        ("business analyst", "Business Analyst"),
+        ("data analyst", "Data Analyst"),
+        ("bi analyst", "BI Analyst"),
+        ("product operations", "Product Operations"),
+        ("operations analyst", "Operations Analyst"),
+        ("business operations", "Business Operations"),
+        ("pm", "PM"),
+    ]
+
+    title_lower = title.lower()
+    for raw, normalized in normalized_candidates:
+        if raw in title_lower:
+            return normalized
+
+    return title
+
 def extract_location(text):
     text_lower = (text or "").lower()
 
@@ -450,7 +494,6 @@ def fetch_matrix_jobs():
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
-    # שלב 1 - מאתרים קישורים למשרות
     candidate_links = []
     for a in soup.find_all("a", href=True):
         text = clean_text(a.get_text(" ", strip=True))
@@ -462,12 +505,10 @@ def fetch_matrix_jobs():
         elif is_relevant_title(text):
             candidate_links.append((text, full_link, a))
 
-    # שלב 2 - בונים משרה מכל קישור רלוונטי
     for text, full_link, a in candidate_links:
         parent = a.parent
         card_text = clean_text(parent.get_text(" ", strip=True) if parent else "")
 
-        # אם זה קישור "פרטי המשרה", ננסה להוציא title מהבלוק שסביבו
         title = text
         if title == "פרטי המשרה":
             block_text = card_text.replace("פרטי המשרה", "").strip()
@@ -475,13 +516,14 @@ def fetch_matrix_jobs():
             if lines:
                 title = lines[0]
 
+        title = normalize_matrix_title(title)
+
         if not title or len(title) < 8:
             continue
 
         if not is_relevant_title(title):
             continue
 
-        # שלב 3 - ננסה לקרוא גם את עמוד הפרטים הציבורי, כדי להפעיל אותן התניות 1:1
         details_text = card_text
         try:
             details_response = requests.get(full_link, headers=MATRIX_HEADERS, timeout=30)
@@ -526,7 +568,6 @@ all_jobs = []
 all_jobs.extend(fetch_jobmaster_jobs())
 all_jobs.extend(fetch_matrix_jobs())
 
-# מסירים כפילויות בין מקורות לפי id שכבר בנוי על source + title + link
 unique_jobs = {}
 for job in all_jobs:
     unique_jobs[job["id"]] = job
