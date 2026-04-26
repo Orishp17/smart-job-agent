@@ -466,7 +466,6 @@ def fetch_jobmaster_jobs():
                 continue
 
             full_link = urljoin("https://www.jobmaster.co.il/", href)
-
             parent = link.parent
             card_text = clean_text(parent.get_text(" ", strip=True) if parent else "")
 
@@ -502,32 +501,30 @@ def fetch_jobmaster_jobs():
     return jobs
 
 
-def extract_matrix_detail_links(soup):
-    detail_links = []
+def extract_matrix_candidate_links(soup):
+    links = []
+    seen = set()
 
     for a in soup.find_all("a", href=True):
         href = a["href"].strip()
         full_link = urljoin(MATRIX_JOBS_URL, href)
-        link_text = clean_text(a.get_text(" ", strip=True))
 
-        if "/jobs/משרה/" not in full_link:
+        if "matrix.co.il/jobs/" not in full_link:
             continue
 
-        if link_text not in {"פרטי המשרה", "מעבר למשרה"} and not is_relevant_title(link_text):
+        if full_link.rstrip("/") == MATRIX_JOBS_URL.rstrip("/"):
             continue
 
-        detail_links.append(full_link)
-
-    unique_links = []
-    seen = set()
-
-    for link in detail_links:
-        if link in seen:
+        if any(x in full_link.lower() for x in ["/category/", "/tag/", "/page/"]):
             continue
-        seen.add(link)
-        unique_links.append(link)
 
-    return unique_links
+        if full_link in seen:
+            continue
+
+        seen.add(full_link)
+        links.append(full_link)
+
+    return links
 
 
 def fetch_matrix_jobs():
@@ -538,9 +535,9 @@ def fetch_matrix_jobs():
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
-    detail_links = extract_matrix_detail_links(soup)
+    candidate_links = extract_matrix_candidate_links(soup)
 
-    for full_link in detail_links:
+    for full_link in candidate_links:
         try:
             details_response = requests.get(full_link, headers=MATRIX_HEADERS, timeout=30)
             details_response.raise_for_status()
