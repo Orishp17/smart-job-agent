@@ -99,7 +99,14 @@ ARAB_CITY_KEYWORDS = [
     "טמרה", "tamra"
 ]
 
-RELEVANT_WORDS = ["product", "manager", "business", "analyst", "data", "operations"]
+RELEVANT_WORDS = [
+    "product", "manager", "business", "analyst", "data", "operations",
+    "מוצר", "מנהל מוצר", "ניהול מוצר",
+    "אנליסט", "אנליזה", "דאטה", "נתונים",
+    "מנתח מערכות", "ניתוח מערכות", "מערכות מידע",
+    "אופרציה", "תפעול", "operations"
+]
+
 BLOCKED_TITLE_KEYWORDS = ["senior", "lead", "director", "vp", "head", "principal", "chief"]
 BLOCKED_DESCRIPTION_KEYWORDS = [
     "5+ years", "7+ years", "10+ years",
@@ -135,6 +142,8 @@ def normalize_matrix_title(title):
         if title.startswith(prefix):
             title = title[len(prefix):].strip(" -")
 
+    title_lower = title.lower()
+
     normalized_candidates = [
         ("junior product manager", "Junior Product Manager"),
         ("product manager", "Product Manager"),
@@ -149,9 +158,23 @@ def normalize_matrix_title(title):
         ("systems analyst", "System Analyst"),
     ]
 
-    title_lower = title.lower()
     for raw, normalized in normalized_candidates:
         if raw in title_lower:
+            return normalized
+
+    hebrew_candidates = [
+        ("מנהל מוצר", "Product Manager"),
+        ("ניהול מוצר", "Product Manager"),
+        ("מנתח מערכות", "System Analyst"),
+        ("ניתוח מערכות", "System Analyst"),
+        ("אנליסט דאטה", "Data Analyst"),
+        ("אנליסט נתונים", "Data Analyst"),
+        ("אנליסט", "Business Analyst"),
+        ("תפעול", "Operations"),
+    ]
+
+    for raw, normalized in hebrew_candidates:
+        if raw in title:
             return normalized
 
     return title
@@ -438,7 +461,27 @@ def build_job_id(source, title, link):
 
 def is_relevant_title(title):
     title_lower = title.lower()
-    return any(word in title_lower for word in RELEVANT_WORDS)
+    title_original = title
+
+    if any(word in title_lower for word in RELEVANT_WORDS):
+        return True
+
+    hebrew_patterns = [
+        "מנהל מוצר",
+        "ניהול מוצר",
+        "מנתח מערכות",
+        "ניתוח מערכות",
+        "אנליסט",
+        "דאטה",
+        "נתונים",
+        "מערכות מידע",
+        "תפעול"
+    ]
+
+    if any(pattern in title_original for pattern in hebrew_patterns):
+        return True
+
+    return False
 
 
 def is_blocked(title, text):
