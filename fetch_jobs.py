@@ -1,4 +1,5 @@
 import json
+import re
 import requests
 from bs4 import BeautifulSoup
 
@@ -13,6 +14,76 @@ SEARCHES = [
 headers = {
     "User-Agent": "Mozilla/5.0"
 }
+
+CITY_KEYWORDS = {
+    "כפר סבא": "כפר סבא",
+    "kfar saba": "כפר סבא",
+    "רעננה": "רעננה",
+    "raanana": "רעננה",
+    "ra'anana": "רעננה",
+    "תל אביב": "תל אביב",
+    "tel aviv": "תל אביב",
+    "רמת גן": "רמת גן",
+    "ramat gan": "רמת גן",
+    "הרצליה": "הרצליה",
+    "herzliya": "הרצליה",
+    "פתח תקווה": "פתח תקווה",
+    "petah tikva": "פתח תקווה",
+    "petach tikva": "פתח תקווה",
+    "הוד השרון": "הוד השרון",
+    "hod hasharon": "הוד השרון",
+    "נתניה": "נתניה",
+    "netanya": "נתניה",
+    "ראשון לציון": "ראשון לציון",
+    "rishon lezion": "ראשון לציון",
+    "חולון": "חולון",
+    "holon": "חולון",
+    "בת ים": "בת ים",
+    "bat yam": "בת ים",
+    "בני ברק": "בני ברק",
+    "bnei brak": "בני ברק",
+    "גבעתיים": "גבעתיים",
+    "givatayim": "גבעתיים",
+    "אור יהודה": "אור יהודה",
+    "or yehuda": "אור יהודה",
+    "יהוד": "יהוד",
+    "yehud": "יהוד",
+    "אשדוד": "אשדוד",
+    "ashdod": "אשדוד",
+    "אשקלון": "אשקלון",
+    "ashkelon": "אשקלון",
+    "ירושלים": "ירושלים",
+    "jerusalem": "ירושלים",
+    "חיפה": "חיפה",
+    "haifa": "חיפה",
+    "באר שבע": "באר שבע",
+    "beer sheva": "באר שבע",
+    "be'er sheva": "באר שבע"
+}
+
+SHARON_CITIES = {
+    "כפר סבא", "רעננה", "הוד השרון", "הרצליה", "נתניה"
+}
+
+GUSH_DAN_CITIES = {
+    "תל אביב", "רמת גן", "גבעתיים", "בני ברק", "פתח תקווה",
+    "חולון", "בת ים", "ראשון לציון", "אור יהודה", "יהוד"
+}
+
+def extract_location(text):
+    text_lower = text.lower()
+
+    for keyword, city_hebrew in CITY_KEYWORDS.items():
+        if keyword in text_lower:
+            return city_hebrew
+
+    if "שרון" in text or "hasharon" in text_lower:
+        return "אזור השרון"
+
+    if "גוש דן" in text or "gush dan" in text_lower:
+        return "גוש דן"
+
+    return "ישראל"
 
 def score_title(title):
     title_lower = title.lower()
@@ -88,10 +159,7 @@ def score_description(text):
         "strategy": 3,
         "insights": 4,
         "entry": 6,
-        "junior": 8,
-        "1-2": 4,
-        "0-2": 6,
-        "1-3": 4
+        "junior": 8
     }
 
     negative_keywords = {
@@ -115,17 +183,67 @@ def score_description(text):
 
     return score
 
+def score_experience(text):
+    text_lower = text.lower()
+    score = 0
+
+    if "0 שנות" in text or "0 years" in text_lower or "0-1" in text_lower:
+        score += 14
+    elif "0-2" in text_lower or "0 עד 2" in text or "עד 2 שנות" in text:
+        score += 12
+    elif "1-2" in text_lower or "1 עד 2" in text or "1-2 שנות" in text:
+        score += 9
+    elif "2-3" in text_lower or "2 עד 3" in text or "2-3 שנות" in text:
+        score += 5
+    elif "3+ years" in text_lower or "3 שנות" in text:
+        score -= 8
+    elif "4+ years" in text_lower or "4 שנות" in text:
+        score -= 12
+    elif "5+ years" in text_lower or "5 שנות" in text:
+        score -= 16
+
+    return score
+
+def score_degree(text):
+    text_lower = text.lower()
+    score = 0
+
+    if "bsc" in text_lower or "b.sc" in text_lower or "b.sc." in text_lower:
+        score -= 6
+
+    if "ba" in text_lower or "b.a" in text_lower or "b.a." in text_lower:
+        score += 2
+
+    return score
+
+def score_location(location):
+    score = 0
+
+    if location in {"כפר סבא", "רעננה"}:
+        score += 14
+    elif location in SHARON_CITIES:
+        score += 10
+    elif location in GUSH_DAN_CITIES or location in {"גוש דן", "אזור השרון"}:
+        score += 6
+    elif location == "ישראל":
+        score += 0
+    else:
+        score -= 6
+
+    return score
+
 def add_variation(title, description):
     combined = (title + " " + description).lower()
-
     unique_bonus = len(set(combined.split())) % 7
     length_bonus = min(len(combined) // 120, 4)
-
     return unique_bonus + length_bonus
 
-def final_score(title, description):
+def final_score(title, description, location):
     score = score_title(title)
     score += score_description(description)
+    score += score_experience(description)
+    score += score_degree(description)
+    score += score_location(location)
     score += add_variation(title, description)
 
     if score > 97:
@@ -189,13 +307,14 @@ for search in SEARCHES:
 
         seen_ids.add(job_id)
 
-        score = final_score(title, card_text)
+        location = extract_location(card_text)
+        score = final_score(title, card_text, location)
 
         job = {
             "id": job_id,
             "title": title,
             "company": "JobMaster listing",
-            "location": "Israel",
+            "location": location,
             "score": score,
             "reasons": [],
             "link": full_link
