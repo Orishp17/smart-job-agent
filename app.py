@@ -31,12 +31,13 @@ if new_jobs:
 💰 שכר: {salary_text}
 📊 ציון התאמה: {job['score']}
 
-🔗 לינק להגשה:
-{job['link']}"""
+🔗 <a href="{job['link']}">לצפייה במשרה</a>"""
 
         payload = {
             "chat_id": chat_id,
-            "text": message
+            "text": message,
+            "parse_mode": "HTML",
+            "disable_web_page_preview": True
         }
 
         response = requests.post(url, data=payload)
