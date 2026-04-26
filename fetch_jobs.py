@@ -501,7 +501,7 @@ def fetch_jobmaster_jobs():
     return jobs
 
 
-def extract_matrix_candidate_links(soup):
+def extract_matrix_job_links(soup):
     links = []
     seen = set()
 
@@ -509,13 +509,8 @@ def extract_matrix_candidate_links(soup):
         href = a["href"].strip()
         full_link = urljoin(MATRIX_JOBS_URL, href)
 
-        if "matrix.co.il/jobs/" not in full_link:
-            continue
-
-        if full_link.rstrip("/") == MATRIX_JOBS_URL.rstrip("/"):
-            continue
-
-        if any(x in full_link.lower() for x in ["/category/", "/tag/", "/page/"]):
+        # רק עמודי משרה ספציפיים
+        if "/jobs/%D7%9E%D7%A9%D7%A8%D7%94/" not in full_link and "/jobs/משרה/" not in full_link:
             continue
 
         if full_link in seen:
@@ -535,9 +530,9 @@ def fetch_matrix_jobs():
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
-    candidate_links = extract_matrix_candidate_links(soup)
+    job_links = extract_matrix_job_links(soup)
 
-    for full_link in candidate_links:
+    for full_link in job_links:
         try:
             details_response = requests.get(full_link, headers=MATRIX_HEADERS, timeout=30)
             details_response.raise_for_status()
