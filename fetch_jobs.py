@@ -501,15 +501,34 @@ def fetch_jobmaster_jobs():
     return jobs
 
 
-def extract_matrix_job_links(soup):
-    links = []
+def extract_matrix_category_links(soup):
+    category_links = []
     seen = set()
 
     for a in soup.find_all("a", href=True):
         href = a["href"].strip()
         full_link = urljoin(MATRIX_JOBS_URL, href)
 
-        # רק עמודי משרה ספציפיים
+        if "/jobs/%D7%9E%D7%A9%D7%A8%D7%95%D7%AA/" not in full_link and "/jobs/משרות/" not in full_link:
+            continue
+
+        if full_link in seen:
+            continue
+
+        seen.add(full_link)
+        category_links.append(full_link)
+
+    return category_links
+
+
+def extract_matrix_job_links_from_category(soup):
+    job_links = []
+    seen = set()
+
+    for a in soup.find_all("a", href=True):
+        href = a["href"].strip()
+        full_link = urljoin(MATRIX_JOBS_URL, href)
+
         if "/jobs/%D7%9E%D7%A9%D7%A8%D7%94/" not in full_link and "/jobs/משרה/" not in full_link:
             continue
 
@@ -517,9 +536,9 @@ def extract_matrix_job_links(soup):
             continue
 
         seen.add(full_link)
-        links.append(full_link)
+        job_links.append(full_link)
 
-    return links
+    return job_links
 
 
 def fetch_matrix_jobs():
@@ -530,9 +549,28 @@ def fetch_matrix_jobs():
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
-    job_links = extract_matrix_job_links(soup)
+    category_links = extract_matrix_category_links(soup)
 
-    for full_link in job_links:
+    all_job_links = []
+    seen_job_links = set()
+
+    for category_link in category_links:
+        try:
+            category_response = requests.get(category_link, headers=MATRIX_HEADERS, timeout=30)
+            category_response.raise_for_status()
+            category_soup = BeautifulSoup(category_response.text, "html.parser")
+        except Exception:
+            continue
+
+        job_links = extract_matrix_job_links_from_category(category_soup)
+
+        for job_link in job_links:
+            if job_link in seen_job_links:
+                continue
+            seen_job_links.add(job_link)
+            all_job_links.append(job_link)
+
+    for full_link in all_job_links:
         try:
             details_response = requests.get(full_link, headers=MATRIX_HEADERS, timeout=30)
             details_response.raise_for_status()
