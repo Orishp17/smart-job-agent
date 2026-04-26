@@ -140,6 +140,7 @@ def normalize_matrix_title(title):
         ("product operations", "Product Operations"),
         ("operations analyst", "Operations Analyst"),
         ("business operations", "Business Operations"),
+        ("program manager", "Program Manager"),
     ]
 
     title_lower = title.lower()
@@ -501,59 +502,32 @@ def fetch_jobmaster_jobs():
     return jobs
 
 
-def extract_matrix_cards(soup):
-    cards = []
+def extract_matrix_detail_links(soup):
+    detail_links = []
 
-    # ניסיון 1 - בלוקים עם קישור "פרטי המשרה"
     for a in soup.find_all("a", href=True):
-        anchor_text = clean_text(a.get_text(" ", strip=True))
-        href = a["href"]
+        href = a["href"].strip()
         full_link = urljoin(MATRIX_JOBS_URL, href)
+        link_text = clean_text(a.get_text(" ", strip=True))
 
-        if "פרטי המשרה" not in anchor_text and "detail" not in href.lower():
+        if "/jobs/משרה/" not in full_link:
             continue
 
-        container = a.find_parent(["article", "div", "li", "section"])
-        if not container:
+        if link_text not in {"פרטי המשרה", "מעבר למשרה"} and not is_relevant_title(link_text):
             continue
 
-        card_text = clean_text(container.get_text(" ", strip=True))
-        cards.append({
-            "title": "",
-            "link": full_link,
-            "text": card_text
-        })
+        detail_links.append(full_link)
 
-    # ניסיון 2 - קישורים עם טייטל רלוונטי
-    for a in soup.find_all("a", href=True):
-        title = clean_text(a.get_text(" ", strip=True))
-        href = a["href"]
-        full_link = urljoin(MATRIX_JOBS_URL, href)
+    unique_links = []
+    seen = set()
 
-        if not title or len(title) < 8:
+    for link in detail_links:
+        if link in seen:
             continue
+        seen.add(link)
+        unique_links.append(link)
 
-        if not is_relevant_title(title):
-            continue
-
-        if "/jobs/" not in full_link and "matrix.co.il" not in full_link:
-            continue
-
-        container = a.find_parent(["article", "div", "li", "section"])
-        text = clean_text(container.get_text(" ", strip=True) if container else title)
-
-        cards.append({
-            "title": title,
-            "link": full_link,
-            "text": text
-        })
-
-    # מניעת כפילויות לפי link
-    unique = {}
-    for card in cards:
-        unique[card["link"]] = card
-
-    return list(unique.values())
+    return unique_links
 
 
 def fetch_matrix_jobs():
@@ -564,56 +538,44 @@ def fetch_matrix_jobs():
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
-    matrix_cards = extract_matrix_cards(soup)
+    detail_links = extract_matrix_detail_links(soup)
 
-    for card in matrix_cards:
-        full_link = card["link"]
-        list_text = clean_text(card["text"])
-        title = clean_text(card["title"])
-
-        details_text = list_text
-        details_title = title
-
+    for full_link in detail_links:
         try:
             details_response = requests.get(full_link, headers=MATRIX_HEADERS, timeout=30)
             details_response.raise_for_status()
             details_soup = BeautifulSoup(details_response.text, "html.parser")
-
-            details_text = clean_text(details_soup.get_text(" ", strip=True))
-
-            page_title = ""
-            if details_soup.title and details_soup.title.string:
-                page_title = clean_text(details_soup.title.string)
-
-            h1 = details_soup.find("h1")
-            if h1:
-                details_title = clean_text(h1.get_text(" ", strip=True))
-            elif page_title:
-                details_title = page_title
-
         except Exception:
-            pass
-
-        final_title = normalize_matrix_title(details_title or title or list_text)
-
-        if not final_title or len(final_title) < 8:
             continue
 
-        if not is_relevant_title(final_title):
+        details_text = clean_text(details_soup.get_text(" ", strip=True))
+
+        title = ""
+        h1 = details_soup.find("h1")
+        if h1:
+            title = clean_text(h1.get_text(" ", strip=True))
+
+        if not title and details_soup.title and details_soup.title.string:
+            title = clean_text(details_soup.title.string)
+
+        title = normalize_matrix_title(title)
+
+        if not title or len(title) < 8:
             continue
 
-        combined_text = clean_text(list_text + " " + details_text)
-
-        if is_blocked(final_title, combined_text):
+        if not is_relevant_title(title):
             continue
 
-        location = extract_location(combined_text)
-        if is_blocked_location(location, combined_text):
+        if is_blocked(title, details_text):
             continue
 
-        salary_info = extract_salary(combined_text)
+        location = extract_location(details_text)
+        if is_blocked_location(location, details_text):
+            continue
 
-        job_id = build_job_id("Matrix", final_title, full_link)
+        salary_info = extract_salary(details_text)
+
+        job_id = build_job_id("Matrix", title, full_link)
         if job_id in seen_ids:
             continue
 
@@ -621,12 +583,12 @@ def fetch_matrix_jobs():
 
         jobs.append({
             "id": job_id,
-            "title": final_title,
+            "title": title,
             "company": "Matrix",
             "source": "Matrix",
             "location": location,
             "salary": salary_info["text"],
-            "score": final_score(final_title, combined_text, location, salary_info),
+            "score": final_score(title, details_text, location, salary_info),
             "link": full_link
         })
 
