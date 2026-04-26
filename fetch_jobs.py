@@ -433,3 +433,4 @@ with open("jobs.json", "w", encoding="utf-8") as file:
     json.dump(all_jobs, file, ensure_ascii=False, indent=2)
 
 print(f"jobs.json created successfully with {len(all_jobs)} jobs")
+
