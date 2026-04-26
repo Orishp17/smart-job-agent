@@ -10,9 +10,10 @@ CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 JOBS_FILE = "jobs.json"
 SENT_JOBS_FILE = "sent_jobs.json"
 OUTPUT_DIR = "generated_cards"
+ASSETS_DIR = "assets"
 
 CARD_WIDTH = 1080
-CARD_HEIGHT = 1350
+CARD_HEIGHT = 1080
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -34,34 +35,30 @@ def save_json_file(path, data):
 
 
 def get_source_name(job):
-    return job.get("source") or job.get("company") or "Unknown"
+    raw_source = (job.get("source") or job.get("company") or "").strip().lower()
 
+    if "matrix" in raw_source:
+        return "Matrix"
 
-def get_company_name(job):
-    source_name = get_source_name(job)
-    company_name = (
-        job.get("company_name")
-        or job.get("actual_company")
-        or job.get("employer")
-        or ""
-    )
+    if "jobmaster" in raw_source:
+        return "JobMaster"
 
-    if company_name and company_name.strip().lower() != source_name.strip().lower():
-        return company_name.strip()
-
-    return ""
+    return "Unknown"
 
 
 def get_location(job):
-    return job.get("location") or "ישראל"
+    location = (job.get("location") or "").strip()
+    return location if location else "ישראל"
 
 
 def get_salary(job):
-    return job.get("salary") or "טווח השכר לא מצוין"
+    salary = (job.get("salary") or "").strip()
+    return salary if salary else "טווח שכר לא מצוין"
 
 
 def get_score(job):
-    return job.get("score") or "0/100"
+    score = (job.get("score") or "").strip()
+    return score if score else "0/100"
 
 
 def get_score_number(score_text):
@@ -71,44 +68,59 @@ def get_score_number(score_text):
         return 0
 
 
-def get_theme_by_source(source_name):
-    source_lower = source_name.lower()
+def get_job_link(job):
+    return (job.get("link") or "").strip()
 
-    if "matrix" in source_lower:
+
+def get_logo_path(source_name):
+    if source_name == "JobMaster":
+        return os.path.join(ASSETS_DIR, "jobmaster_logo.png")
+
+    if source_name == "Matrix":
+        return os.path.join(ASSETS_DIR, "matrix_logo.png")
+
+    return None
+
+
+def get_theme(source_name):
+    if source_name == "Matrix":
         return {
-            "bg_top": (72, 96, 220),
-            "bg_bottom": (126, 92, 255),
-            "accent": (84, 204, 255),
-            "pill": (255, 255, 255, 70),
-            "card": (255, 255, 255),
-            "text": (22, 28, 45),
-            "muted": (95, 103, 125),
-            "soft_box": (244, 247, 255),
-            "score_box": (239, 248, 255),
-            "button": (82, 122, 255),
+            "bg_top": (236, 243, 255),
+            "bg_bottom": (214, 229, 255),
+            "main_card": (255, 255, 255),
+            "primary": (53, 96, 222),
+            "primary_soft": (228, 236, 255),
+            "text": (24, 32, 48),
+            "muted": (103, 113, 132),
+            "line": (226, 232, 243),
+            "score_bg": (236, 243, 255),
+            "chip_bg": (230, 238, 255),
+            "shadow": (0, 0, 0, 42),
         }
 
     return {
-        "bg_top": (255, 126, 95),
-        "bg_bottom": (254, 180, 123),
-        "accent": (255, 255, 255),
-        "pill": (255, 255, 255, 70),
-        "card": (255, 255, 255),
-        "text": (36, 31, 32),
-        "muted": (112, 105, 105),
-        "soft_box": (255, 246, 241),
-        "score_box": (255, 244, 232),
-        "button": (225, 91, 54),
+        "bg_top": (255, 246, 236),
+        "bg_bottom": (255, 228, 198),
+        "main_card": (255, 255, 255),
+        "primary": (231, 104, 46),
+        "primary_soft": (255, 236, 220),
+        "text": (40, 32, 28),
+        "muted": (120, 103, 92),
+        "line": (243, 229, 217),
+        "score_bg": (255, 244, 232),
+        "chip_bg": (255, 240, 226),
+        "shadow": (0, 0, 0, 42),
     }
 
 
 def get_font(size, bold=False):
+    candidates = []
+
     if bold:
         candidates = [
             "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
             "/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf",
             "C:/Windows/Fonts/arialbd.ttf",
-            "C:/Windows/Fonts/Arialbd.ttf",
             "/Library/Fonts/Arial Bold.ttf",
         ]
     else:
@@ -116,7 +128,6 @@ def get_font(size, bold=False):
             "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
             "/usr/share/fonts/dejavu/DejaVuSans.ttf",
             "C:/Windows/Fonts/arial.ttf",
-            "C:/Windows/Fonts/Arial.ttf",
             "/Library/Fonts/Arial.ttf",
         ]
 
@@ -127,83 +138,65 @@ def get_font(size, bold=False):
     return ImageFont.load_default()
 
 
-FONT_BRAND = get_font(28, bold=True)
-FONT_BADGE = get_font(26, bold=True)
-FONT_TITLE = get_font(62, bold=True)
-FONT_SUBTITLE = get_font(24, bold=False)
+FONT_KICKER = get_font(28, bold=True)
+FONT_TITLE = get_font(60, bold=True)
 FONT_LABEL = get_font(24, bold=True)
-FONT_VALUE = get_font(31, bold=False)
-FONT_VALUE_SMALL = get_font(28, bold=False)
-FONT_SCORE_BIG = get_font(74, bold=True)
+FONT_VALUE = get_font(32, bold=False)
+FONT_VALUE_BOLD = get_font(32, bold=True)
+FONT_SMALL = get_font(22, bold=False)
+FONT_SMALL_BOLD = get_font(22, bold=True)
+FONT_SCORE = get_font(72, bold=True)
 FONT_SCORE_SMALL = get_font(26, bold=True)
-FONT_FOOTER = get_font(24, bold=False)
+FONT_BUTTON = get_font(30, bold=True)
 
 
 def create_gradient_background(width, height, top_color, bottom_color):
-    background = Image.new("RGBA", (width, height), (255, 255, 255, 255))
-    draw = ImageDraw.Draw(background)
+    image = Image.new("RGB", (width, height), top_color)
+    draw = ImageDraw.Draw(image)
 
     for y in range(height):
         ratio = y / float(height)
         r = int(top_color[0] * (1 - ratio) + bottom_color[0] * ratio)
         g = int(top_color[1] * (1 - ratio) + bottom_color[1] * ratio)
         b = int(top_color[2] * (1 - ratio) + bottom_color[2] * ratio)
-        draw.line([(0, y), (width, y)], fill=(r, g, b, 255))
+        draw.line([(0, y), (width, y)], fill=(r, g, b))
 
-    return background
+    return image
 
 
-def add_background_shapes(image, theme):
+def add_soft_background_shapes(image):
     overlay = Image.new("RGBA", image.size, (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
 
-    draw.ellipse((-120, 70, 260, 450), fill=(255, 255, 255, 28))
-    draw.ellipse((760, 60, 1160, 430), fill=(255, 255, 255, 24))
-    draw.ellipse((820, 980, 1240, 1400), fill=(255, 255, 255, 24))
-    draw.ellipse((-130, 1060, 250, 1430), fill=(255, 255, 255, 20))
+    draw.ellipse((-120, -40, 320, 360), fill=(255, 255, 255, 45))
+    draw.ellipse((770, 40, 1160, 390), fill=(255, 255, 255, 35))
+    draw.ellipse((780, 820, 1180, 1180), fill=(255, 255, 255, 30))
+    draw.ellipse((-90, 820, 220, 1110), fill=(255, 255, 255, 22))
 
-    for x in range(70, 1000, 190):
-        draw.rounded_rectangle((x, 1080, x + 90, 1100), radius=10, fill=(255, 255, 255, 18))
-
-    return Image.alpha_composite(image, overlay)
+    return Image.alpha_composite(image.convert("RGBA"), overlay).convert("RGB")
 
 
-def draw_shadowed_rounded_rectangle(base_image, box, radius=36, fill=(255, 255, 255), shadow_alpha=55):
+def draw_shadow(base_image, box, radius, shadow_color):
     shadow_layer = Image.new("RGBA", base_image.size, (0, 0, 0, 0))
     shadow_draw = ImageDraw.Draw(shadow_layer)
 
     x1, y1, x2, y2 = box
-    shadow_box = (x1 + 10, y1 + 16, x2 + 10, y2 + 16)
-    shadow_draw.rounded_rectangle(shadow_box, radius=radius, fill=(0, 0, 0, shadow_alpha))
+    shadow_draw.rounded_rectangle(
+        (x1 + 8, y1 + 12, x2 + 8, y2 + 12),
+        radius=radius,
+        fill=shadow_color
+    )
+
     shadow_layer = shadow_layer.filter(ImageFilter.GaussianBlur(18))
-
-    combined = Image.alpha_composite(base_image, shadow_layer)
-
-    card_layer = Image.new("RGBA", base_image.size, (0, 0, 0, 0))
-    card_draw = ImageDraw.Draw(card_layer)
-    card_draw.rounded_rectangle(box, radius=radius, fill=fill)
-
-    combined = Image.alpha_composite(combined, card_layer)
-    return combined
+    result = Image.alpha_composite(base_image.convert("RGBA"), shadow_layer)
+    return result.convert("RGB")
 
 
-def draw_pill(draw, xy, text, font, fill, text_fill):
-    x1, y1, x2, y2 = xy
-    draw.rounded_rectangle(xy, radius=(y2 - y1) // 2, fill=fill)
-
-    bbox = draw.textbbox((0, 0), text, font=font)
-    tw = bbox[2] - bbox[0]
-    th = bbox[3] - bbox[1]
-    tx = x1 + ((x2 - x1) - tw) / 2
-    ty = y1 + ((y2 - y1) - th) / 2 - 2
-    draw.text((tx, ty), text, font=font, fill=text_fill)
-
-
-def fit_text_to_width(draw, text, font, max_width, max_lines):
-    words = text.split()
-    if not words:
+def fit_text_lines(draw, text, font, max_width, max_lines):
+    if not text:
         return [""]
 
+    words = text.split()
     lines = []
     current_line = ""
 
@@ -225,171 +218,166 @@ def fit_text_to_width(draw, text, font, max_width, max_lines):
     if len(lines) <= max_lines:
         return lines
 
-    trimmed = lines[:max_lines]
-    last_line = trimmed[-1]
+    lines = lines[:max_lines]
+    last_line = lines[-1]
 
     while True:
         candidate = last_line + "..."
         bbox = draw.textbbox((0, 0), candidate, font=font)
-        if bbox[2] - bbox[0] <= max_width:
-            trimmed[-1] = candidate
+        line_width = bbox[2] - bbox[0]
+
+        if line_width <= max_width or len(last_line.split()) <= 1:
+            lines[-1] = candidate
             break
 
-        parts = last_line.split()
-        if len(parts) <= 1:
-            trimmed[-1] = candidate
-            break
+        last_line = " ".join(last_line.split()[:-1])
 
-        last_line = " ".join(parts[:-1])
-
-    return trimmed
+    return lines
 
 
-def draw_info_box(draw, x, y, w, h, label, value, theme, value_font=None):
-    if value_font is None:
-        value_font = FONT_VALUE
+def paste_logo(base_image, logo_path, x, y, max_width, max_height):
+    if not logo_path or not os.path.exists(logo_path):
+        return
 
-    draw.rounded_rectangle((x, y, x + w, y + h), radius=28, fill=theme["soft_box"])
+    logo = Image.open(logo_path).convert("RGBA")
+    width, height = logo.size
 
-    draw.text((x + 26, y + 18), label, font=FONT_LABEL, fill=theme["muted"])
+    scale = min(max_width / width, max_height / height)
+    new_width = max(1, int(width * scale))
+    new_height = max(1, int(height * scale))
 
-    value_lines = fit_text_to_width(draw, value, value_font, w - 52, 2)
-    current_y = y + 58
+    logo = logo.resize((new_width, new_height), Image.LANCZOS)
+    base_image.paste(logo, (x, y), logo)
 
-    for line in value_lines:
-        draw.text((x + 26, current_y), line, font=value_font, fill=theme["text"])
+
+def draw_chip(draw, x, y, text, theme):
+    padding_x = 22
+    padding_y = 14
+
+    bbox = draw.textbbox((0, 0), text, font=FONT_SMALL_BOLD)
+    text_width = bbox[2] - bbox[0]
+    text_height = bbox[3] - bbox[1]
+
+    chip_width = text_width + padding_x * 2
+    chip_height = text_height + padding_y * 2
+
+    draw.rounded_rectangle(
+        (x, y, x + chip_width, y + chip_height),
+        radius=22,
+        fill=theme["chip_bg"]
+    )
+
+    draw.text(
+        (x + padding_x, y + padding_y - 2),
+        text,
+        font=FONT_SMALL_BOLD,
+        fill=theme["primary"]
+    )
+
+
+def draw_info_box(draw, x, y, width, height, label, value, theme):
+    draw.rounded_rectangle(
+        (x, y, x + width, y + height),
+        radius=28,
+        fill=theme["primary_soft"]
+    )
+
+    draw.text((x + 24, y + 18), label, font=FONT_LABEL, fill=theme["muted"])
+
+    lines = fit_text_lines(draw, value, FONT_VALUE, width - 48, 2)
+    current_y = y + 54
+
+    for line in lines:
+        draw.text((x + 24, current_y), line, font=FONT_VALUE, fill=theme["text"])
         current_y += 36
 
 
 def create_job_card(job):
     source_name = get_source_name(job)
-    company_name = get_company_name(job)
     location = get_location(job)
     salary = get_salary(job)
     score_text = get_score(job)
     score_number = get_score_number(score_text)
-    title = job.get("title", "Untitled Job")
+    title = (job.get("title") or "Untitled Job").strip()
 
-    theme = get_theme_by_source(source_name)
+    theme = get_theme(source_name)
+    logo_path = get_logo_path(source_name)
 
     image = create_gradient_background(CARD_WIDTH, CARD_HEIGHT, theme["bg_top"], theme["bg_bottom"])
-    image = add_background_shapes(image, theme)
-
-    card_box = (54, 95, CARD_WIDTH - 54, CARD_HEIGHT - 80)
-    image = draw_shadowed_rounded_rectangle(
-        image,
-        card_box,
-        radius=44,
-        fill=(255, 255, 255, 255),
-        shadow_alpha=58
-    )
+    image = add_soft_background_shapes(image)
+    image = draw_shadow(image, (52, 58, CARD_WIDTH - 52, CARD_HEIGHT - 58), 42, theme["shadow"])
 
     draw = ImageDraw.Draw(image)
 
-    draw.text((88, 125), "Job Hunter By Ori", font=FONT_BRAND, fill=(255, 255, 255, 235))
-    draw.text((88, 160), "Fresh job alert", font=FONT_SUBTITLE, fill=(255, 255, 255, 215))
+    main_box = (52, 58, CARD_WIDTH - 52, CARD_HEIGHT - 58)
+    draw.rounded_rectangle(main_box, radius=42, fill=theme["main_card"])
 
-    draw_pill(
-        draw,
-        (88, 210, 265, 262),
-        "NEW JOB",
-        FONT_BADGE,
-        (255, 255, 255, 230),
-        theme["button"]
-    )
+    draw_chip(draw, 88, 92, "NEW JOB", theme)
 
-    source_pill_width = 220
-    draw_pill(
-        draw,
-        (CARD_WIDTH - 88 - source_pill_width, 210, CARD_WIDTH - 88, 262),
-        source_name,
-        FONT_BADGE,
-        (255, 255, 255, 235),
-        theme["button"]
-    )
+    paste_logo(image, logo_path, CARD_WIDTH - 320, 92, 180, 70)
 
-    content_left = 95
-    content_right = CARD_WIDTH - 95
-    content_width = content_right - content_left
+    title_lines = fit_text_lines(draw, title, FONT_TITLE, 760, 3)
+    title_y = 220
 
-    title_lines = fit_text_to_width(draw, title, FONT_TITLE, content_width - 40, 3)
-
-    title_y = 335
     for line in title_lines:
-        draw.text((content_left, title_y), line, font=FONT_TITLE, fill=theme["text"])
-        title_y += 76
+        draw.text((88, title_y), line, font=FONT_TITLE, fill=theme["text"])
+        title_y += 72
 
-    if company_name:
-        draw.text(
-            (content_left, title_y + 10),
-            company_name,
-            font=FONT_VALUE_SMALL,
-            fill=theme["muted"]
-        )
-        info_top = title_y + 85
-    else:
-        info_top = title_y + 55
+    draw.text((88, title_y + 8), source_name, font=FONT_VALUE_BOLD, fill=theme["primary"])
 
-    score_box = (CARD_WIDTH - 300, 330, CARD_WIDTH - 110, 520)
-    draw.rounded_rectangle(score_box, radius=36, fill=theme["score_box"])
+    score_box = (820, 238, 960, 388)
+    draw.rounded_rectangle(score_box, radius=28, fill=theme["score_bg"])
+    draw.text((848, 258), "Score", font=FONT_SCORE_SMALL, fill=theme["muted"])
+    draw.text((846, 290), str(score_number), font=FONT_SCORE, fill=theme["primary"])
 
-    draw.text((score_box[0] + 32, score_box[1] + 24), "Match score", font=FONT_SCORE_SMALL, fill=theme["muted"])
-    draw.text((score_box[0] + 32, score_box[1] + 72), str(score_number), font=FONT_SCORE_BIG, fill=theme["button"])
-    draw.text((score_box[0] + 120, score_box[1] + 108), "/100", font=FONT_SCORE_SMALL, fill=theme["muted"])
-
+    info_y = 455
     box_gap = 22
-    box_width = int((content_width - box_gap) / 2)
+    box_width = 430
     box_height = 140
 
-    first_row_y = info_top
-    second_row_y = info_top + box_height + box_gap
+    draw_info_box(draw, 88, info_y, box_width, box_height, "Location", location, theme)
+    draw_info_box(draw, 562, info_y, box_width, box_height, "Salary", salary, theme)
+    draw_info_box(draw, 88, info_y + box_height + box_gap, box_width, box_height, "Source", source_name, theme)
+    draw_info_box(draw, 562, info_y + box_height + box_gap, box_width, box_height, "Match", score_text, theme)
 
-    draw_info_box(draw, content_left, first_row_y, box_width, box_height, "Source", source_name, theme)
-    draw_info_box(draw, content_left + box_width + box_gap, first_row_y, box_width, box_height, "Location", location, theme)
-    draw_info_box(draw, content_left, second_row_y, box_width, box_height, "Salary", salary, theme, value_font=FONT_VALUE_SMALL)
-    draw_info_box(draw, content_left + box_width + box_gap, second_row_y, box_width, box_height, "Open in Telegram", "Use the button below", theme, value_font=FONT_VALUE_SMALL)
+    divider_y = 845
+    draw.line((88, divider_y, CARD_WIDTH - 88, divider_y), fill=theme["line"], width=3)
 
-    divider_y = second_row_y + box_height + 50
-    draw.line((content_left, divider_y, content_right, divider_y), fill=(233, 233, 239), width=3)
+    button_box = (88, 885, CARD_WIDTH - 88, 980)
+    draw.rounded_rectangle(button_box, radius=28, fill=theme["primary"])
 
-    footer_text = "Clean card • Big title • Easy to read"
-    footer_bbox = draw.textbbox((0, 0), footer_text, font=FONT_FOOTER)
-    footer_width = footer_bbox[2] - footer_bbox[0]
-    draw.text(
-        ((CARD_WIDTH - footer_width) / 2, divider_y + 32),
-        footer_text,
-        font=FONT_FOOTER,
-        fill=theme["muted"]
-    )
+    button_text = "Open job from Telegram"
+    bbox = draw.textbbox((0, 0), button_text, font=FONT_BUTTON)
+    text_width = bbox[2] - bbox[0]
+    text_x = (CARD_WIDTH - text_width) / 2
+    draw.text((text_x, 915), button_text, font=FONT_BUTTON, fill=(255, 255, 255))
+
+    footer_text = "Job Hunter By Ori"
+    draw.text((88, 1010), footer_text, font=FONT_SMALL, fill=theme["muted"])
 
     file_name = f"{job.get('id', 'job')}.jpg"
-    file_path = os.path.join(OUTPUT_DIR, file_name)
+    output_path = os.path.join(OUTPUT_DIR, file_name)
+    image.save(output_path, format="JPEG", quality=95, optimize=True)
 
-    image = image.convert("RGB")
-    image.save(file_path, format="JPEG", quality=95, optimize=True)
-
-    return file_path
+    return output_path
 
 
 def send_job_photo(job, image_path):
+    title = (job.get("title") or "Untitled Job").strip()
     source_name = get_source_name(job)
     location = get_location(job)
     salary = get_salary(job)
-    score_text = get_score(job)
-    title = job.get("title", "Untitled Job")
-    job_link = job.get("link", "")
+    score = get_score(job)
+    link = get_job_link(job)
 
-    caption_lines = [
-        "נמצאה משרה חדשה 🚀",
-        "",
-        f"תפקיד: {title}",
-        f"מקור: {source_name}",
-        f"מיקום: {location}",
-        f"שכר: {salary}",
-        f"ציון התאמה: {score_text}",
-    ]
-
-    caption = "\n".join(caption_lines)
+    caption = (
+        f"נמצאה משרה חדשה 🚀\n\n"
+        f"תפקיד: {title}\n"
+        f"חברה: {source_name}\n"
+        f"מיקום: {location}\n"
+        f"שכר: {salary}\n"
+        f"ציון התאמה: {score}"
+    )
 
     payload = {
         "chat_id": CHAT_ID,
@@ -399,18 +387,18 @@ def send_job_photo(job, image_path):
                 [
                     {
                         "text": "לצפייה במשרה",
-                        "url": job_link
+                        "url": link
                     }
                 ]
             ]
         })
     }
 
-    send_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto"
 
     with open(image_path, "rb") as photo_file:
         response = requests.post(
-            send_url,
+            url,
             data=payload,
             files={"photo": photo_file},
             timeout=60
@@ -447,13 +435,12 @@ def main():
     for job in new_jobs:
         try:
             image_path = create_job_card(job)
-            sent_successfully = send_job_photo(job, image_path)
+            success = send_job_photo(job, image_path)
 
-            if sent_successfully:
+            if success:
                 updated_sent_jobs.append(job.get("id"))
-
         except Exception as error:
-            print(f"Error while sending job {job.get('id')}: {error}")
+            print(f"Error sending job {job.get('id')}: {error}")
 
     save_json_file(SENT_JOBS_FILE, updated_sent_jobs)
 
