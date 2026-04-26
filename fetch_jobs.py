@@ -52,13 +52,13 @@ CITY_KEYWORDS = {
     "ashdod": "אשדוד",
     "אשקלון": "אשקלון",
     "ashkelon": "אשקלון",
-    "ירושלים": "ירושלים",
-    "jerusalem": "ירושלים",
     "חיפה": "חיפה",
     "haifa": "חיפה",
     "באר שבע": "באר שבע",
     "beer sheva": "באר שבע",
-    "be'er sheva": "באר שבע"
+    "be'er sheva": "באר שבע",
+    "ירושלים": "ירושלים",
+    "jerusalem": "ירושלים"
 }
 
 SHARON_CITIES = {
@@ -69,6 +69,22 @@ GUSH_DAN_CITIES = {
     "תל אביב", "רמת גן", "גבעתיים", "בני ברק", "פתח תקווה",
     "חולון", "בת ים", "ראשון לציון", "אור יהודה", "יהוד"
 }
+
+ARAB_CITY_KEYWORDS = [
+    "אום אל-פחם", "אום אל פחם", "umm al-fahm",
+    "נצרת", "nazareth",
+    "טייבה", "tayibe", "taybeh",
+    "טירה", "tira",
+    "סכנין", "sakhnin",
+    "שפרעם", "shefa-'amr", "shefa amr", "shfaram",
+    "רהט", "rahat",
+    "כפר קאסם", "kafr qasim", "kfar qasem",
+    "קלנסווה", "qalansawe", "kalansewa",
+    "באקה אל-גרבייה", "באקה אל גרבייה", "baqa al-gharbiyye",
+    "עראבה", "arraba",
+    "מג'ד אל-כרום", "majd al-kurum",
+    "טמרה", "tamra"
+]
 
 def extract_location(text):
     text_lower = text.lower()
@@ -84,6 +100,62 @@ def extract_location(text):
         return "גוש דן"
 
     return "ישראל"
+
+def is_blocked_location(location, text):
+    text_lower = text.lower()
+
+    if location == "ירושלים":
+        return True
+
+    for keyword in ARAB_CITY_KEYWORDS:
+        if keyword.lower() in text_lower:
+            return True
+
+    return False
+
+def extract_salary(text):
+    normalized = text.replace(",", "")
+    normalized = normalized.replace("₪", " ")
+    normalized = normalized.replace("שח", " ")
+    normalized = normalized.replace("ש\"ח", " ")
+    normalized = normalized.replace("ש׳ח", " ")
+
+    range_patterns = [
+        r'(\d{4,6})\s*[-–]\s*(\d{4,6})',
+        r'בין\s*(\d{4,6})\s*ל\s*(\d{4,6})'
+    ]
+
+    for pattern in range_patterns:
+        match = re.search(pattern, normalized)
+        if match:
+            min_salary = int(match.group(1))
+            max_salary = int(match.group(2))
+            return {
+                "text": f"{min_salary:,} - {max_salary:,} ₪",
+                "min": min_salary,
+                "max": max_salary
+            }
+
+    single_patterns = [
+        r'עד\s*(\d{4,6})',
+        r'(\d{4,6})\s*₪'
+    ]
+
+    for pattern in single_patterns:
+        match = re.search(pattern, normalized)
+        if match:
+            amount = int(match.group(1))
+            return {
+                "text": f"{amount:,} ₪",
+                "min": amount,
+                "max": amount
+            }
+
+    return {
+        "text": "טווח השכר לא מצוין",
+        "min": None,
+        "max": None
+    }
 
 def score_title(title):
     title_lower = title.lower()
@@ -135,10 +207,6 @@ def score_title(title):
     if "product" in title_lower and "data" in title_lower:
         score += 4
 
-    junior_signals = ["junior", "entry", "associate", "specialist"]
-    if not any(word in title_lower for word in junior_signals):
-        score -= 5
-
     return score
 
 def score_description(text):
@@ -157,9 +225,7 @@ def score_description(text):
         "process": 3,
         "operations": 4,
         "strategy": 3,
-        "insights": 4,
-        "entry": 6,
-        "junior": 8
+        "insights": 4
     }
 
     negative_keywords = {
@@ -195,6 +261,8 @@ def score_experience(text):
         score += 9
     elif "2-3" in text_lower or "2 עד 3" in text or "2-3 שנות" in text:
         score += 5
+    elif "mid level" in text_lower or "mid-level" in text_lower or "midlevel" in text_lower:
+        score -= 6
     elif "3+ years" in text_lower or "3 שנות" in text:
         score -= 8
     elif "4+ years" in text_lower or "4 שנות" in text:
@@ -217,18 +285,41 @@ def score_degree(text):
     return score
 
 def score_location(location):
+    if location in {"כפר סבא", "רעננה"}:
+        return 14
+    if location in SHARON_CITIES:
+        return 10
+    if location in GUSH_DAN_CITIES or location in {"גוש דן", "אזור השרון"}:
+        return 6
+    if location == "ישראל":
+        return 0
+    return -6
+
+def score_salary(salary_info):
+    if salary_info["max"] is None:
+        return 0
+    if salary_info["max"] > 14000:
+        return 10
+    if salary_info["max"] >= 10000:
+        return 0
+    return -10
+
+def score_seniority(title, text):
+    combined = (title + " " + text).lower()
     score = 0
 
-    if location in {"כפר סבא", "רעננה"}:
-        score += 14
-    elif location in SHARON_CITIES:
-        score += 10
-    elif location in GUSH_DAN_CITIES or location in {"גוש דן", "אזור השרון"}:
-        score += 6
-    elif location == "ישראל":
-        score += 0
-    else:
+    junior_terms = ["junior", "entry level", "entry-level", "entry", "graduate", "graduate program", "associate", "trainee"]
+    mid_terms = ["mid level", "mid-level", "midlevel"]
+    senior_terms = ["senior", "sr.", "sr ", "lead", "director", "vp", "head", "principal", "chief"]
+
+    if any(term in combined for term in junior_terms):
+        score += 12
+
+    if any(term in combined for term in mid_terms):
         score -= 6
+
+    if any(term in combined for term in senior_terms):
+        score -= 18
 
     return score
 
@@ -238,17 +329,18 @@ def add_variation(title, description):
     length_bonus = min(len(combined) // 120, 4)
     return unique_bonus + length_bonus
 
-def final_score(title, description, location):
+def final_score(title, description, location, salary_info):
     score = score_title(title)
     score += score_description(description)
     score += score_experience(description)
     score += score_degree(description)
     score += score_location(location)
+    score += score_salary(salary_info)
+    score += score_seniority(title, description)
     score += add_variation(title, description)
 
     if score > 97:
         score = 97
-
     if score < 35:
         score = 35
 
@@ -301,20 +393,27 @@ for search in SEARCHES:
         if any(word in card_text_lower for word in blocked_description_keywords):
             continue
 
+        location = extract_location(card_text)
+
+        if is_blocked_location(location, card_text):
+            continue
+
+        salary_info = extract_salary(card_text)
+
         job_id = build_job_id(title, full_link)
         if job_id in seen_ids:
             continue
 
         seen_ids.add(job_id)
 
-        location = extract_location(card_text)
-        score = final_score(title, card_text, location)
+        score = final_score(title, card_text, location, salary_info)
 
         job = {
             "id": job_id,
             "title": title,
             "company": "JobMaster listing",
             "location": location,
+            "salary": salary_info["text"],
             "score": score,
             "reasons": [],
             "link": full_link
