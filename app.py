@@ -21,11 +21,14 @@ if new_jobs:
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
 
     for job in new_jobs:
+        salary_text = job.get("salary", "טווח השכר לא מצוין")
+
         message = f"""🚀 נמצאה משרה חדשה
 
 🎯 תפקיד: {job['title']}
 🏢 חברה: {job['company']}
 📍 מיקום: {job['location']}
+💰 שכר: {salary_text}
 📊 ציון התאמה: {job['score']}
 
 🔗 לינק להגשה:
