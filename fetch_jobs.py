@@ -21,6 +21,10 @@ MATRIX_HEADERS = {
     "User-Agent": "Mozilla/5.0"
 }
 
+MAX_MATRIX_CATEGORIES = 6
+MAX_MATRIX_JOBS_PER_CATEGORY = 6
+MAX_MATRIX_FINAL_JOBS = 10
+
 CITY_KEYWORDS = {
     "כפר סבא": "כפר סבא",
     "kfar saba": "כפר סבא",
@@ -95,7 +99,6 @@ ARAB_CITY_KEYWORDS = [
 ]
 
 RELEVANT_WORDS = ["product", "manager", "business", "analyst", "data", "operations"]
-
 BLOCKED_TITLE_KEYWORDS = ["senior", "lead", "director", "vp", "head", "principal", "chief"]
 BLOCKED_DESCRIPTION_KEYWORDS = [
     "5+ years", "7+ years", "10+ years",
@@ -141,6 +144,8 @@ def normalize_matrix_title(title):
         ("operations analyst", "Operations Analyst"),
         ("business operations", "Business Operations"),
         ("program manager", "Program Manager"),
+        ("system analyst", "System Analyst"),
+        ("systems analyst", "System Analyst"),
     ]
 
     title_lower = title.lower()
@@ -454,7 +459,7 @@ def fetch_jobmaster_jobs():
 
     for search in SEARCHES:
         search_url = f"https://www.jobmaster.co.il/jobs/?q={search.replace(' ', '+')}"
-        response = requests.get(search_url, headers=JOBMASTER_HEADERS, timeout=30)
+        response = requests.get(search_url, headers=JOBMASTER_HEADERS, timeout=20)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
 
@@ -502,7 +507,7 @@ def fetch_jobmaster_jobs():
 
 
 def extract_matrix_category_links(soup):
-    category_links = []
+    links = []
     seen = set()
 
     for a in soup.find_all("a", href=True):
@@ -516,13 +521,13 @@ def extract_matrix_category_links(soup):
             continue
 
         seen.add(full_link)
-        category_links.append(full_link)
+        links.append(full_link)
 
-    return category_links
+    return links[:MAX_MATRIX_CATEGORIES]
 
 
-def extract_matrix_job_links_from_category(soup):
-    job_links = []
+def extract_matrix_direct_job_links(soup):
+    links = []
     seen = set()
 
     for a in soup.find_all("a", href=True):
@@ -536,43 +541,42 @@ def extract_matrix_job_links_from_category(soup):
             continue
 
         seen.add(full_link)
-        job_links.append(full_link)
+        links.append(full_link)
 
-    return job_links
+    return links[:MAX_MATRIX_JOBS_PER_CATEGORY]
 
 
 def fetch_matrix_jobs():
     jobs = []
     seen_ids = set()
 
-    response = requests.get(MATRIX_JOBS_URL, headers=MATRIX_HEADERS, timeout=30)
+    response = requests.get(MATRIX_JOBS_URL, headers=MATRIX_HEADERS, timeout=20)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
     category_links = extract_matrix_category_links(soup)
-
     all_job_links = []
     seen_job_links = set()
 
     for category_link in category_links:
         try:
-            category_response = requests.get(category_link, headers=MATRIX_HEADERS, timeout=30)
+            category_response = requests.get(category_link, headers=MATRIX_HEADERS, timeout=20)
             category_response.raise_for_status()
             category_soup = BeautifulSoup(category_response.text, "html.parser")
         except Exception:
             continue
 
-        job_links = extract_matrix_job_links_from_category(category_soup)
+        direct_job_links = extract_matrix_direct_job_links(category_soup)
 
-        for job_link in job_links:
+        for job_link in direct_job_links:
             if job_link in seen_job_links:
                 continue
             seen_job_links.add(job_link)
             all_job_links.append(job_link)
 
-    for full_link in all_job_links:
+    for full_link in all_job_links[:MAX_MATRIX_FINAL_JOBS]:
         try:
-            details_response = requests.get(full_link, headers=MATRIX_HEADERS, timeout=30)
+            details_response = requests.get(full_link, headers=MATRIX_HEADERS, timeout=20)
             details_response.raise_for_status()
             details_soup = BeautifulSoup(details_response.text, "html.parser")
         except Exception:
