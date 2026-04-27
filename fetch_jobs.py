@@ -21,10 +21,10 @@ MATRIX_HEADERS = {
     "User-Agent": "Mozilla/5.0"
 }
 
-MAX_MATRIX_DIRECT_FROM_HOME = 12
-MAX_MATRIX_CATEGORY_LINKS = 6
-MAX_MATRIX_DIRECT_PER_CATEGORY = 6
-MAX_MATRIX_FINAL_JOBS = 12
+MAX_MATRIX_HOT_LINKS = 15
+MAX_MATRIX_CATEGORY_LINKS = 8
+MAX_MATRIX_DIRECT_PER_CATEGORY = 12
+MAX_MATRIX_FINAL_JOBS = 20
 
 CITY_KEYWORDS = {
     "כפר סבא": "כפר סבא",
@@ -71,7 +71,9 @@ CITY_KEYWORDS = {
     "ירושלים": "ירושלים",
     "jerusalem": "ירושלים",
     "לוד": "לוד",
-    "lod": "לוד"
+    "lod": "לוד",
+    "השפלה": "ישראל",
+    "shfela": "ישראל"
 }
 
 SHARON_CITIES = {
@@ -104,7 +106,7 @@ RELEVANT_WORDS = [
     "מוצר", "מנהל מוצר", "ניהול מוצר",
     "אנליסט", "אנליזה", "דאטה", "נתונים",
     "מנתח מערכות", "ניתוח מערכות", "מערכות מידע",
-    "אופרציה", "תפעול", "operations"
+    "אופרציה", "תפעול"
 ]
 
 BLOCKED_TITLE_KEYWORDS = ["senior", "lead", "director", "vp", "head", "principal", "chief"]
@@ -135,7 +137,10 @@ def normalize_matrix_title(title):
         "דרוש/ה",
         "דרושים/ות",
         "למטריקס דרוש/ה",
-        "למטריקס דרושים/ות"
+        "למטריקס דרושים/ות",
+        "לארגון",
+        "דרוש",
+        "דרושה"
     ]
 
     for prefix in prefixes:
@@ -171,6 +176,7 @@ def normalize_matrix_title(title):
         ("אנליסט נתונים", "Data Analyst"),
         ("אנליסט", "Business Analyst"),
         ("תפעול", "Operations"),
+        ("מערכות מידע", "System Analyst"),
     ]
 
     for raw, normalized in hebrew_candidates:
@@ -415,7 +421,7 @@ def score_seniority(title, text):
 
     junior_terms = ["junior", "entry level", "entry-level", "entry", "graduate", "graduate program", "associate", "trainee"]
     mid_terms = ["mid level", "mid-level", "midlevel"]
-    senior_terms = ["senior", "sr.", "sr ", "lead", "director", "vp", "head", "principal", "chief"]
+    senior_terms = ["senior", "sr.", "sr ", "lead", "director", "vp", "head", "principal", "chief", "בכיר"]
 
     if any(term in combined for term in junior_terms):
         score += 12
@@ -568,7 +574,7 @@ def extract_matrix_direct_links_from_home(soup):
         seen.add(full_link)
         links.append(full_link)
 
-    return links[:MAX_MATRIX_DIRECT_FROM_HOME]
+    return links[:MAX_MATRIX_HOT_LINKS]
 
 
 def extract_matrix_category_links(soup):
@@ -616,9 +622,13 @@ def fetch_matrix_jobs():
     seen_ids = set()
     seen_links = set()
 
-    response = requests.get(MATRIX_JOBS_URL, headers=MATRIX_HEADERS, timeout=20)
-    response.raise_for_status()
-    soup = BeautifulSoup(response.text, "html.parser")
+    try:
+        response = requests.get(MATRIX_JOBS_URL, headers=MATRIX_HEADERS, timeout=20)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, "html.parser")
+    except Exception as error:
+        print(f"Matrix homepage fetch failed: {error}")
+        return jobs
 
     direct_from_home = extract_matrix_direct_links_from_home(soup)
     print(f"Matrix direct links from home: {len(direct_from_home)}")
@@ -666,7 +676,7 @@ def fetch_matrix_jobs():
 
         title = normalize_matrix_title(title)
 
-        if not title or len(title) < 8:
+        if not title or len(title) < 4:
             continue
 
         if not is_relevant_title(title):
