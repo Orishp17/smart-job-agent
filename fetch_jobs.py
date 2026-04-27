@@ -617,6 +617,24 @@ def extract_matrix_direct_links_from_category(soup):
     return links[:MAX_MATRIX_DIRECT_PER_CATEGORY]
 
 
+def extract_matrix_main_content(details_soup):
+    h1 = details_soup.find("h1")
+    if h1:
+        container = h1.find_parent(["main", "article", "section", "div"])
+        if container:
+            return clean_text(container.get_text(" ", strip=True))
+
+    article = details_soup.find("article")
+    if article:
+        return clean_text(article.get_text(" ", strip=True))
+
+    main = details_soup.find("main")
+    if main:
+        return clean_text(main.get_text(" ", strip=True))
+
+    return clean_text(details_soup.get_text(" ", strip=True))
+
+
 def fetch_matrix_jobs():
     jobs = []
     seen_ids = set()
@@ -664,7 +682,7 @@ def fetch_matrix_jobs():
         except Exception:
             continue
 
-        details_text = clean_text(details_soup.get_text(" ", strip=True))
+        details_text = extract_matrix_main_content(details_soup)
 
         title = ""
         h1 = details_soup.find("h1")
