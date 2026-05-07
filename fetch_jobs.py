@@ -1,5 +1,6 @@
 import json
 import re
+import hashlib
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
@@ -462,7 +463,7 @@ def final_score(title, description, location, salary_info):
 
 def build_job_id(source, title, link):
     base = f"{source}|{title.strip().lower()}|{link.strip().lower()}"
-    return str(abs(hash(base)))[:12]
+    return hashlib.sha256(base.encode("utf-8")).hexdigest()[:16]
 
 
 def is_relevant_title(title):
