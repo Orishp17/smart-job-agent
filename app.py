@@ -6,8 +6,12 @@ from pathlib import Path
 from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, InputFile
 
 BASE_DIR = Path(__file__).resolve().parent
+
 JOBS_FILE = BASE_DIR / "jobs.json"
 SENT_FILE = BASE_DIR / "sent_jobs.json"
+APPLIED_FILE = BASE_DIR / "applied_jobs.json"
+OFFSET_FILE = BASE_DIR / "telegram_update_offset.json"
+
 ASSETS_DIR = BASE_DIR / "assets"
 
 JOBMASTER_IMAGE = ASSETS_DIR / "jobmaster_logo.png"
@@ -81,7 +85,7 @@ def build_caption(job):
         f"💰 שכר: {salary}\n"
         f"📊 ציון התאמה: {score}\n"
         f"🌐 מקור: {source}\n\n"
-        "👇 לחץ על הכפתור למטה כדי לצפות במשרה"
+        "👇 לחץ על הכפתורים למטה כדי לצפות במשרה או לסמן שכבר הגשת קו״ח"
     )
 
     if len(caption) > 1024:
@@ -96,23 +100,140 @@ def build_caption(job):
             f"💰 שכר: {salary}\n"
             f"📊 ציון התאמה: {score}\n"
             f"🌐 מקור: {source}\n\n"
-            "👇 לחץ על הכפתור למטה כדי לצפות במשרה"
+            "👇 לחץ על הכפתורים למטה כדי לצפות במשרה או לסמן שכבר הגשת קו״ח"
         )
 
     return caption
+
+
+def build_keyboard(job):
+    job_id = get_job_id(job)
+    link = clean_text(job.get("link"), "")
+
+    buttons = []
+
+    if link:
+        buttons.append([InlineKeyboardButton("🔎 לצפייה במשרה", url=link)])
+
+    if job_id:
+        buttons.append([InlineKeyboardButton("✅ הגשתי קו״ח", callback_data=f"applied:{job_id}")])
+
+    return InlineKeyboardMarkup(buttons) if buttons else None
+
+
+def build_applied_keyboard(job_link):
+    buttons = []
+
+    if job_link:
+        buttons.append([InlineKeyboardButton("🔎 לצפייה במשרה", url=job_link)])
+
+    buttons.append([InlineKeyboardButton("✅ סומן שכבר הגשת קו״ח", callback_data="already_applied")])
+
+    return InlineKeyboardMarkup(buttons)
+
+
+async def process_applied_callbacks(bot):
+    applied_jobs = load_json(APPLIED_FILE, [])
+    sent_jobs = load_json(SENT_FILE, [])
+    offset_data = load_json(OFFSET_FILE, {"offset": None})
+
+    if not isinstance(applied_jobs, list):
+        applied_jobs = []
+
+    if not isinstance(sent_jobs, list):
+        sent_jobs = []
+
+    applied_set = set(str(item) for item in applied_jobs)
+    sent_set = set(str(item) for item in sent_jobs)
+
+    offset = offset_data.get("offset")
+
+    try:
+        updates = await bot.get_updates(
+            offset=offset,
+            timeout=5,
+            allowed_updates=["callback_query"]
+        )
+    except Exception as error:
+        print(f"Could not get Telegram updates: {error}")
+        return applied_set
+
+    max_update_id = None
+    changed = False
+
+    for update in updates:
+        max_update_id = update.update_id
+
+        query = update.callback_query
+        if not query:
+            continue
+
+        data = query.data or ""
+
+        if data == "already_applied":
+            try:
+                await query.answer("המשרה כבר סומנה כהוגשה")
+            except Exception:
+                pass
+            continue
+
+        if not data.startswith("applied:"):
+            continue
+
+        job_id = data.replace("applied:", "").strip()
+
+        if not job_id:
+            continue
+
+        applied_set.add(job_id)
+        sent_set.add(job_id)
+        changed = True
+
+        try:
+            await query.answer("סומן שהגשת קו״ח. המשרה לא תישלח שוב.")
+        except Exception:
+            pass
+
+        try:
+            message = query.message
+            if message:
+                current_markup = message.reply_markup
+                job_link = ""
+
+                if current_markup and current_markup.inline_keyboard:
+                    for row in current_markup.inline_keyboard:
+                        for button in row:
+                            if button.url:
+                                job_link = button.url
+                                break
+                        if job_link:
+                            break
+
+                await bot.edit_message_reply_markup(
+                    chat_id=message.chat_id,
+                    message_id=message.message_id,
+                    reply_markup=build_applied_keyboard(job_link)
+                )
+        except Exception as error:
+            print(f"Could not edit message markup: {error}")
+
+    if max_update_id is not None:
+        save_json(OFFSET_FILE, {"offset": max_update_id + 1})
+
+    if changed:
+        save_json(APPLIED_FILE, sorted(applied_set))
+        save_json(SENT_FILE, sorted(sent_set))
+        print(f"applied_jobs.json updated with {len(applied_set)} job IDs.")
+
+    return applied_set
 
 
 async def send_job(bot, chat_id, job):
     source = get_source(job)
     image_path = get_source_image(source)
     caption = build_caption(job)
+    reply_markup = build_keyboard(job)
     link = clean_text(job.get("link"), "")
-
-    buttons = []
-    if link:
-        buttons.append([InlineKeyboardButton("לצפייה במשרה", url=link)])
-
-    reply_markup = InlineKeyboardMarkup(buttons) if buttons else None
 
     if image_path.exists():
         try:
@@ -150,8 +271,13 @@ async def main():
     if not token or not chat_id:
         raise ValueError("Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID")
 
+    bot = Bot(token=token)
+
+    applied_set = await process_applied_callbacks(bot)
+
     jobs = load_json(JOBS_FILE, [])
     sent_jobs = load_json(SENT_FILE, [])
+    applied_jobs = load_json(APPLIED_FILE, [])
 
     if not isinstance(jobs, list):
         jobs = []
@@ -159,22 +285,32 @@ async def main():
     if not isinstance(sent_jobs, list):
         sent_jobs = []
 
+    if not isinstance(applied_jobs, list):
+        applied_jobs = []
+
     sent_set = set(str(item) for item in sent_jobs)
+    applied_set = set(str(item) for item in applied_jobs) | applied_set
+
     jobs_to_send = []
 
     for job in jobs:
         job_id = get_job_id(job)
+
         if not job_id:
             continue
+
         if job_id in sent_set:
             continue
+
+        if job_id in applied_set:
+            continue
+
         jobs_to_send.append(job)
 
     if not jobs_to_send:
         print("No new jobs to send.")
         return
 
-    bot = Bot(token=token)
     sent_any = False
 
     for job in jobs_to_send[:MAX_JOBS_PER_RUN]:
