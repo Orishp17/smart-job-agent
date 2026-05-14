@@ -160,16 +160,6 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Data%20Analyst"
   },
   {
-    "id": "6fc38e55e0af7cb6",
-    "title": "Product Group Manager- Multi-Disciplinary Defense Tech Start-Up",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "רמת גן",
-    "salary": "טווח השכר לא מצוין",
-    "score": "78/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9755687"
-  },
-  {
     "id": "f9bed74bbde952df",
     "title": "מפתח/ת BI ואנליסט/ית עסקי/ת לחברה מובילה בשפלה",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "72/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9737353"
+  },
+  {
+    "id": "107df016d11a11d4",
+    "title": "דרושים Business Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   }
 ]
