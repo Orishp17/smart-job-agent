@@ -150,16 +150,6 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Data%20Analyst"
   },
   {
-    "id": "f9bed74bbde952df",
-    "title": "מפתח/ת BI ואנליסט/ית עסקי/ת לחברה מובילה בשפלה",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ראשון לציון",
-    "salary": "טווח השכר לא מצוין",
-    "score": "75/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9753857"
-  },
-  {
     "id": "b80d040e9ae50726",
     "title": "Are you a sharp, business-oriented FP&A professional",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "68/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9741829"
+  },
+  {
+    "id": "035833af594a68df",
+    "title": "Business Financial Analyst for Kimberly Clark",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "68/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9744836"
   }
 ]
