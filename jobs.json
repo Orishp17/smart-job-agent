@@ -30,16 +30,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9743012"
   },
   {
-    "id": "1d8da20165977ef9",
-    "title": "Junior NPI & Product Support Engineer",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "אור יהודה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9756102"
-  },
-  {
     "id": "553bf8acda78077e",
     "title": "לחברה פיננסית מובילה בתל אביב דרוש/ה Data Research Analyst למחלקת ניהול סיכונים",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "68/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9744836"
+  },
+  {
+    "id": "61998934fe8ad406",
+    "title": "BI Analyst (Mid-Level)",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ראשון לציון",
+    "salary": "טווח השכר לא מצוין",
+    "score": "67/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9735193"
   }
 ]
