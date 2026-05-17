@@ -160,6 +160,16 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Data%20Analyst"
   },
   {
+    "id": "91a68d6f5b51cc1d",
+    "title": "אנליסט/ית ביצועים",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "הרצליה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "79/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9760774"
+  },
+  {
     "id": "7d42e98a415a00b6",
     "title": "CRM Analyst",
     "company": "JobMaster",
@@ -170,6 +180,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9737353"
   },
   {
+    "id": "ab66262f0fe004a1",
+    "title": "Software Engineer - Data, Falcon Cloud Security (Hybrid, ISR)",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "רעננה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "71/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9753845"
+  },
+  {
     "id": "107df016d11a11d4",
     "title": "דרושים Business Analyst",
     "company": "JobMaster",
@@ -178,25 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
-  },
-  {
-    "id": "68166c4c755cbbdf",
-    "title": "Operational Product Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "חיפה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "68/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9741829"
-  },
-  {
-    "id": "035833af594a68df",
-    "title": "Business Financial Analyst for Kimberly Clark",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "68/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9744836"
   }
 ]
