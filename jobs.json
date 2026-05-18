@@ -30,16 +30,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9743012"
   },
   {
-    "id": "1d8da20165977ef9",
-    "title": "Junior NPI & Product Support Engineer",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "אור יהודה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9756102"
-  },
-  {
     "id": "553bf8acda78077e",
     "title": "לחברה פיננסית מובילה בתל אביב דרוש/ה Data Research Analyst למחלקת ניהול סיכונים",
     "company": "JobMaster",
@@ -170,33 +160,43 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Data%20Analyst"
   },
   {
-    "id": "91a68d6f5b51cc1d",
-    "title": "אנליסט/ית ביצועים",
+    "id": "107df016d11a11d4",
+    "title": "דרושים Business Analyst",
     "company": "JobMaster",
     "source": "JobMaster",
-    "location": "הרצליה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "79/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9760774"
-  },
-  {
-    "id": "7d42e98a415a00b6",
-    "title": "CRM Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "פתח תקווה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "72/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9737353"
-  },
-  {
-    "id": "034244313dee696c",
-    "title": "Customer Success Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "אור יהודה",
+    "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
+    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
+  },
+  {
+    "id": "68166c4c755cbbdf",
+    "title": "Operational Product Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "חיפה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "68/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9741829"
+  },
+  {
+    "id": "035833af594a68df",
+    "title": "Business Financial Analyst for Kimberly Clark",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "68/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9744836"
+  },
+  {
+    "id": "61998934fe8ad406",
+    "title": "BI Analyst (Mid-Level)",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ראשון לציון",
+    "salary": "טווח השכר לא מצוין",
+    "score": "67/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9735193"
   }
 ]
