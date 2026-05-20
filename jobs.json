@@ -90,6 +90,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9748141"
   },
   {
+    "id": "e86db9742752248c",
+    "title": "Data System Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "90/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9764396"
+  },
+  {
     "id": "f88026f60f9b304f",
     "title": "דרושים אקדמאים/יות מצטיינים/ות למשרת Data & BI Analyst",
     "company": "JobMaster",
@@ -110,6 +120,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9740462"
   },
   {
+    "id": "c20e97435873db1e",
+    "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "88/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9764300"
+  },
+  {
     "id": "a22c2866e7b03804",
     "title": "בוגרים/ות מצטיינים/ות לתפקידי Data Analyst",
     "company": "JobMaster",
@@ -118,16 +138,6 @@
     "salary": "טווח השכר לא מצוין",
     "score": "88/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9520433"
-  },
-  {
-    "id": "bd84a9de767bc988",
-    "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9762661"
   },
   {
     "id": "56692040cb90125e",
@@ -176,7 +186,7 @@
     "source": "JobMaster",
     "location": "נתניה",
     "salary": "טווח השכר לא מצוין",
-    "score": "75/100",
+    "score": "73/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9762530"
   },
   {
@@ -188,15 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "72/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9737353"
-  },
-  {
-    "id": "107df016d11a11d4",
-    "title": "דרושים Business Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   }
 ]
