@@ -130,16 +130,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9764300"
   },
   {
-    "id": "a22c2866e7b03804",
-    "title": "בוגרים/ות מצטיינים/ות לתפקידי Data Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9520433"
-  },
-  {
     "id": "56692040cb90125e",
     "title": "דרושים Product Manager",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "72/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9737353"
+  },
+  {
+    "id": "107df016d11a11d4",
+    "title": "דרושים Business Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   }
 ]
