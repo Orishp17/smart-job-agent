@@ -30,16 +30,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9743012"
   },
   {
-    "id": "4bf23e8d4ba05716",
-    "title": "Production Data Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "הרצליה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9777834"
-  },
-  {
     "id": "27640a5e1932846b",
     "title": "Product / Data Analyst עם ניסיון ב-Qlik Sense",
     "company": "JobMaster",
@@ -160,16 +150,6 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Data%20Analyst"
   },
   {
-    "id": "80f13eb95d287543",
-    "title": "Product Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "73/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9780433"
-  },
-  {
     "id": "834ec4178e338cb0",
     "title": "FP&A Analyst",
     "company": "JobMaster",
@@ -198,5 +178,25 @@
     "salary": "טווח השכר לא מצוין",
     "score": "68/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9744836"
+  },
+  {
+    "id": "61cf5b32daf59303",
+    "title": "Program Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "67/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9675036"
+  },
+  {
+    "id": "a5ceb6ca79803ba4",
+    "title": "Production Engineer",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "נתניה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "67/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9751783"
   }
 ]
