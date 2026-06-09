@@ -50,6 +50,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9781047"
   },
   {
+    "id": "d1148b2d02cc88dd",
+    "title": "מנהל/ת מוצר דיגיטלי (Digital Product Manager)",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "94/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9783628"
+  },
+  {
     "id": "553bf8acda78077e",
     "title": "לחברה פיננסית מובילה בתל אביב דרוש/ה Data Research Analyst למחלקת ניהול סיכונים",
     "company": "JobMaster",
@@ -98,6 +108,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "92/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9760665"
+  },
+  {
+    "id": "81384d5ed234570a",
+    "title": "לחברה מובילה במרכז דרוש/ה Data Analyst מתחיל/ה!",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "רמת גן",
+    "salary": "טווח השכר לא מצוין",
+    "score": "91/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9771760"
   },
   {
     "id": "f88026f60f9b304f",
@@ -178,25 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "73/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9762530"
-  },
-  {
-    "id": "107df016d11a11d4",
-    "title": "דרושים Business Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
-  },
-  {
-    "id": "035833af594a68df",
-    "title": "Business Financial Analyst for Kimberly Clark",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "68/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9744836"
   }
 ]
