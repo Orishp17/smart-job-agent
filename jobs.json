@@ -120,16 +120,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9760665"
   },
   {
-    "id": "81384d5ed234570a",
-    "title": "לחברה מובילה במרכז דרוש/ה Data Analyst מתחיל/ה!",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "רמת גן",
-    "salary": "טווח השכר לא מצוין",
-    "score": "91/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9771760"
-  },
-  {
     "id": "f88026f60f9b304f",
     "title": "דרושים אקדמאים/יות מצטיינים/ות למשרת Data & BI Analyst",
     "company": "JobMaster",
@@ -150,14 +140,14 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9740462"
   },
   {
-    "id": "09921bebd873f9cc",
+    "id": "d40e3c818d41f2ba",
     "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "תל אביב",
     "salary": "טווח השכר לא מצוין",
     "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9784658"
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9786673"
   },
   {
     "id": "56692040cb90125e",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "76/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9780928"
+  },
+  {
+    "id": "3eaf6f7f6ca5a78b",
+    "title": "לארגון מוביל בתחומו בראשל\"צ דרוש/ה רכז/ת תפעול מוצר",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ראשון לציון",
+    "salary": "טווח השכר לא מצוין",
+    "score": "75/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9776155"
   }
 ]
