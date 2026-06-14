@@ -40,16 +40,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9775450"
   },
   {
-    "id": "468318d7f9f0c5ca",
-    "title": "Product Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "96/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9781047"
-  },
-  {
     "id": "d1148b2d02cc88dd",
     "title": "מנהל/ת מוצר דיגיטלי (Digital Product Manager)",
     "company": "JobMaster",
@@ -130,14 +120,14 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9740462"
   },
   {
-    "id": "5ca010fecc63de5e",
+    "id": "e116fad56b976d68",
     "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "תל אביב",
     "salary": "טווח השכר לא מצוין",
     "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9787555"
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9788716"
   },
   {
     "id": "56692040cb90125e",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
+  },
+  {
+    "id": "1dbbfee2a65e83c8",
+    "title": "IT Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9737902"
   }
 ]
