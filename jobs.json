@@ -40,14 +40,14 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9775450"
   },
   {
-    "id": "d1148b2d02cc88dd",
-    "title": "מנהל/ת מוצר דיגיטלי (Digital Product Manager)",
+    "id": "500eaed5a35d2f6d",
+    "title": "Product Operations-עוזר/ת מנהל/ת מוצר",
     "company": "JobMaster",
     "source": "JobMaster",
-    "location": "תל אביב",
+    "location": "ראשון לציון",
     "salary": "טווח השכר לא מצוין",
-    "score": "94/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9783628"
+    "score": "97/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9790731"
   },
   {
     "id": "553bf8acda78077e",
@@ -88,16 +88,6 @@
     "salary": "טווח השכר לא מצוין",
     "score": "92/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9741027"
-  },
-  {
-    "id": "ff2ab35cfd978b7c",
-    "title": "Junior Research Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "פתח תקווה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "92/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9760665"
   },
   {
     "id": "f88026f60f9b304f",
@@ -190,13 +180,23 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9762530"
   },
   {
-    "id": "034244313dee696c",
-    "title": "Customer Success Manager",
+    "id": "c711d85702ed009c",
+    "title": "Program Manager - Tactical Laser",
     "company": "JobMaster",
     "source": "JobMaster",
-    "location": "אור יהודה",
+    "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9789035"
+  },
+  {
+    "id": "107df016d11a11d4",
+    "title": "דרושים Business Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   }
 ]
