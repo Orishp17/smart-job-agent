@@ -80,6 +80,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9741027"
   },
   {
+    "id": "826ab97d756d6985",
+    "title": "דרוש/ה Data Analyst למחלקת הייעוץ והפרויקטים בראשון לציון",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ראשון לציון",
+    "salary": "טווח השכר לא מצוין",
+    "score": "92/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9697086"
+  },
+  {
     "id": "f88026f60f9b304f",
     "title": "דרושים אקדמאים/יות מצטיינים/ות למשרת Data & BI Analyst",
     "company": "JobMaster",
@@ -100,14 +110,14 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9740462"
   },
   {
-    "id": "2494bce526a0f2d9",
+    "id": "afc2c3ed2ed46849",
     "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "תל אביב",
     "salary": "טווח השכר לא מצוין",
     "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9791119"
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9792413"
   },
   {
     "id": "56692040cb90125e",
@@ -188,15 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
-  },
-  {
-    "id": "1dbbfee2a65e83c8",
-    "title": "IT Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9737902"
   }
 ]
