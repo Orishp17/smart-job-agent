@@ -20,16 +20,6 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Junior%20Product%20Manager"
   },
   {
-    "id": "136a03b3d1f6f120",
-    "title": "Treasury Associate Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "כפר סבא",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9781268"
-  },
-  {
     "id": "500eaed5a35d2f6d",
     "title": "Product Operations-עוזר/ת מנהל/ת מוצר",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "75/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9776155"
+  },
+  {
+    "id": "02004bc5ea1ea20f",
+    "title": "FP&A Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "נתניה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "73/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794265"
   }
 ]
