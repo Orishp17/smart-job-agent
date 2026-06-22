@@ -160,16 +160,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9792856"
   },
   {
-    "id": "3cb6a146fb655135",
-    "title": "Data Engineer - maternity leave cover",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "76/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794577"
-  },
-  {
     "id": "5ce42ce807a8674f",
     "title": "Business Development Associate",
     "company": "JobMaster",
@@ -180,6 +170,26 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9780928"
   },
   {
+    "id": "3cb6a146fb655135",
+    "title": "Data Engineer - maternity leave cover",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "76/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794577"
+  },
+  {
+    "id": "3eaf6f7f6ca5a78b",
+    "title": "לארגון מוביל בתחומו בראשל\"צ דרוש/ה רכז/ת תפעול מוצר",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ראשון לציון",
+    "salary": "טווח השכר לא מצוין",
+    "score": "75/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9776155"
+  },
+  {
     "id": "02004bc5ea1ea20f",
     "title": "FP&A Analyst",
     "company": "JobMaster",
@@ -188,15 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "73/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794265"
-  },
-  {
-    "id": "ef5dfb1be9045c49",
-    "title": "Digital Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "בני ברק",
-    "salary": "טווח השכר לא מצוין",
-    "score": "72/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9790184"
   }
 ]
