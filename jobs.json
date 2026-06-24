@@ -160,16 +160,6 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Data%20Analyst"
   },
   {
-    "id": "36678c2318a0d1d9",
-    "title": "Business Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "79/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9792856"
-  },
-  {
     "id": "5ce42ce807a8674f",
     "title": "Business Development Associate",
     "company": "JobMaster",
@@ -190,13 +180,23 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794577"
   },
   {
-    "id": "3eaf6f7f6ca5a78b",
-    "title": "לארגון מוביל בתחומו בראשל\"צ דרוש/ה רכז/ת תפעול מוצר",
+    "id": "02004bc5ea1ea20f",
+    "title": "FP&A Analyst",
     "company": "JobMaster",
     "source": "JobMaster",
-    "location": "ראשון לציון",
+    "location": "נתניה",
     "salary": "טווח השכר לא מצוין",
-    "score": "75/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9776155"
+    "score": "73/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794265"
+  },
+  {
+    "id": "107df016d11a11d4",
+    "title": "דרושים Business Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   }
 ]
