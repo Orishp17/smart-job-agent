@@ -140,16 +140,6 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Data%20Analyst"
   },
   {
-    "id": "3cb6a146fb655135",
-    "title": "Data Engineer - maternity leave cover",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "76/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794577"
-  },
-  {
     "id": "5ce42ce807a8674f",
     "title": "Business Development Associate",
     "company": "JobMaster",
@@ -158,6 +148,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "76/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9780928"
+  },
+  {
+    "id": "3cb6a146fb655135",
+    "title": "Data Engineer - maternity leave cover",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "76/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794577"
   },
   {
     "id": "02004bc5ea1ea20f",
@@ -170,14 +170,14 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794265"
   },
   {
-    "id": "034244313dee696c",
-    "title": "Customer Success Manager",
+    "id": "c711d85702ed009c",
+    "title": "Program Manager - Tactical Laser",
     "company": "JobMaster",
     "source": "JobMaster",
-    "location": "אור יהודה",
+    "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9789035"
   },
   {
     "id": "107df016d11a11d4",
@@ -190,13 +190,13 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   },
   {
-    "id": "035833af594a68df",
-    "title": "Business Financial Analyst for Kimberly Clark",
+    "id": "1dbbfee2a65e83c8",
+    "title": "IT Manager",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
-    "score": "68/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9744836"
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9737902"
   }
 ]
