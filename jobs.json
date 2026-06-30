@@ -1,15 +1,5 @@
 [
   {
-    "id": "4f23b391e56205bc",
-    "title": "Product Manager 779760",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9773021"
-  },
-  {
     "id": "ef580b0470942c82",
     "title": "דרושים Junior Product Manager",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "73/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794265"
+  },
+  {
+    "id": "c711d85702ed009c",
+    "title": "Program Manager - Tactical Laser",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9789035"
   }
 ]
