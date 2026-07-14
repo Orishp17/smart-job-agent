@@ -10,16 +10,6 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Junior%20Product%20Manager"
   },
   {
-    "id": "cb2b355668a8c888",
-    "title": "Entry-Level Data Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "רעננה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9798386"
-  },
-  {
     "id": "50c41dbb58d50246",
     "title": "Junior Data Analyst לאקדמאים עם ראש אנליטי",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
+  },
+  {
+    "id": "8c39bcf8b1d25421",
+    "title": "Development Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "64/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9702036"
   }
 ]
