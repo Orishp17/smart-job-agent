@@ -80,6 +80,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9804600"
   },
   {
+    "id": "b63cabceef15aee6",
+    "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "88/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9830015"
+  },
+  {
     "id": "5b83fb6b2a3421be",
     "title": "בוגרים/ות מצטיינים/ות לתפקידי Data Analyst",
     "company": "JobMaster",
@@ -88,16 +98,6 @@
     "salary": "טווח השכר לא מצוין",
     "score": "88/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823797"
-  },
-  {
-    "id": "c080775d7e644bf2",
-    "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9827540"
   },
   {
     "id": "56692040cb90125e",
@@ -128,6 +128,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "82/100",
     "link": "https://www.jobmaster.co.il/jobs/?q=Data%20Analyst"
+  },
+  {
+    "id": "d321a0d6073e5ae4",
+    "title": "AI Project Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "אור יהודה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "82/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9829937"
   },
   {
     "id": "3644fa6272853420",
@@ -188,15 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9789035"
-  },
-  {
-    "id": "107df016d11a11d4",
-    "title": "דרושים Business Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   }
 ]
