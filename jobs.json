@@ -10,16 +10,6 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Junior%20Product%20Manager"
   },
   {
-    "id": "50c41dbb58d50246",
-    "title": "Junior Data Analyst לאקדמאים עם ראש אנליטי",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9801980"
-  },
-  {
     "id": "294bb2321273c09a",
     "title": "מנהל/ת מוצר (Product Manager) תחום הנעלה וביגוד עבודה",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9789035"
+  },
+  {
+    "id": "107df016d11a11d4",
+    "title": "דרושים Business Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   }
 ]
