@@ -100,16 +100,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823797"
   },
   {
-    "id": "7c0f13a1770db7ab",
-    "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9837856"
-  },
-  {
     "id": "56692040cb90125e",
     "title": "דרושים Product Manager",
     "company": "JobMaster",
@@ -138,6 +128,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "82/100",
     "link": "https://www.jobmaster.co.il/jobs/?q=Data%20Analyst"
+  },
+  {
+    "id": "91449d1f239ee916",
+    "title": "Marketing Data Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "82/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9840604"
   },
   {
     "id": "ac98956607ca0045",
@@ -180,16 +180,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794577"
   },
   {
-    "id": "7b67c38684a98d0a",
-    "title": "Business Analyst לחברת פינטק צעירה וחדשנית בבני ברק",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "בני ברק",
-    "salary": "טווח השכר לא מצוין",
-    "score": "74/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9839066"
-  },
-  {
     "id": "1bbc3324aecaad63",
     "title": "Business Financial Analyst for Arbex",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "73/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9825751"
+  },
+  {
+    "id": "c711d85702ed009c",
+    "title": "Program Manager - Tactical Laser",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9789035"
   }
 ]
