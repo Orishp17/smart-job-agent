@@ -50,16 +50,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9839702"
   },
   {
-    "id": "237beaa1b0513f4c",
-    "title": "Data Analyst ללא ניסיון!",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "91/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9801978"
-  },
-  {
     "id": "3d1fff69529f1545",
     "title": "דרושים אקדמאים/יות מצטיינים/ות למשרת Data & BI Analyst",
     "company": "JobMaster",
@@ -108,6 +98,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "87/100",
     "link": "https://www.jobmaster.co.il/jobs/?q=Product%20Manager"
+  },
+  {
+    "id": "6c3965342e831c22",
+    "title": "Global social media & Digital content manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "כפר סבא",
+    "salary": "טווח השכר לא מצוין",
+    "score": "87/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9841114"
   },
   {
     "id": "17fb19e5c0804884",
@@ -160,16 +160,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9811611"
   },
   {
-    "id": "a4aed0ae38081f1d",
-    "title": "Regional Sales Manager (Spanish Speaker) | Technical Products",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "76/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9833626"
-  },
-  {
     "id": "3cb6a146fb655135",
     "title": "Data Engineer - maternity leave cover",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9789035"
+  },
+  {
+    "id": "107df016d11a11d4",
+    "title": "דרושים Business Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   }
 ]
