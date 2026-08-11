@@ -80,16 +80,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9804600"
   },
   {
-    "id": "b176b3415328e058",
-    "title": "Data System Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "פתח תקווה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9839699"
-  },
-  {
     "id": "5b83fb6b2a3421be",
     "title": "בוגרים/ות מצטיינים/ות לתפקידי Data Analyst",
     "company": "JobMaster",
@@ -98,6 +88,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "88/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823797"
+  },
+  {
+    "id": "b176b3415328e058",
+    "title": "Data System Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "פתח תקווה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "88/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9839699"
   },
   {
     "id": "c84cb693e017a564",
@@ -160,16 +160,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9811611"
   },
   {
-    "id": "3cb6a146fb655135",
-    "title": "Data Engineer - maternity leave cover",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "76/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794577"
-  },
-  {
     "id": "1bbc3324aecaad63",
     "title": "Business Financial Analyst for Arbex",
     "company": "JobMaster",
@@ -178,6 +168,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "73/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9825751"
+  },
+  {
+    "id": "9890e94104db6539",
+    "title": "BI / Data Developer – Long-Term Maternity Leave Cover",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "72/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9794577"
   },
   {
     "id": "107df016d11a11d4",
