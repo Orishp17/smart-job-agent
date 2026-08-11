@@ -180,6 +180,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9825751"
   },
   {
+    "id": "034244313dee696c",
+    "title": "Customer Success Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "אור יהודה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
+  },
+  {
     "id": "c711d85702ed009c",
     "title": "Program Manager - Tactical Laser",
     "company": "JobMaster",
@@ -188,15 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9789035"
-  },
-  {
-    "id": "107df016d11a11d4",
-    "title": "דרושים Business Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   }
 ]
