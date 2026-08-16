@@ -40,16 +40,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9694678"
   },
   {
-    "id": "91449d1f239ee916",
-    "title": "Marketing Data Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "פתח תקווה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "93/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9840604"
-  },
-  {
     "id": "abf2a19b9c90d344",
     "title": "Product Manager",
     "company": "JobMaster",
@@ -190,13 +180,23 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9826765"
   },
   {
-    "id": "29deddfc65120ee2",
-    "title": "System Analyst",
-    "company": "Matrix",
-    "source": "Matrix",
-    "location": "גוש דן",
+    "id": "937616b60c554686",
+    "title": "Business Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
     "score": "71/100",
-    "link": "https://www.matrix.co.il/jobs/משרה/%d7%9e%d7%a4%d7%aa%d7%97-sql-%d7%9c%d7%a6%d7%95%d7%95%d7%aa-%d7%94%d7%91%d7%99%d7%9c%d7%99%d7%a0%d7%92-%d7%91%d7%9e%d7%97%d7%9c%d7%a7%d7%aa-%d7%9e%d7%a2%d7%a8%d7%9b%d7%95%d7%aa-%d7%9e%d7%99%d7%93/"
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9848894"
+  },
+  {
+    "id": "034244313dee696c",
+    "title": "Customer Success Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "אור יהודה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
   }
 ]
