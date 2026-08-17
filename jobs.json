@@ -180,6 +180,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9848894"
   },
   {
+    "id": "034244313dee696c",
+    "title": "Customer Success Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "אור יהודה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
+  },
+  {
     "id": "107df016d11a11d4",
     "title": "דרושים Business Analyst",
     "company": "JobMaster",
@@ -188,15 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
-  },
-  {
-    "id": "13d9406469e5f7cf",
-    "title": "דרושים מערכות מידע",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "55/100",
-    "link": "https://www.jobmaster.co.il/jobs/?q=מערכות מידע"
   }
 ]
