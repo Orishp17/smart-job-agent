@@ -70,16 +70,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823793"
   },
   {
-    "id": "8cfce08afcd6c2dc",
-    "title": "Data Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "פתח תקווה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "89/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9847129"
-  },
-  {
     "id": "bd07f4e9908f30f7",
     "title": "לחברה מובילה דרוש/ה Technical Product Manager (TPM) לתפקיד מרכזי בצוות ה‑R&D",
     "company": "JobMaster",
@@ -88,6 +78,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "88/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9804600"
+  },
+  {
+    "id": "b176b3415328e058",
+    "title": "Data System Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "פתח תקווה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "88/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9839699"
   },
   {
     "id": "5b83fb6b2a3421be",
@@ -190,13 +190,13 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
   },
   {
-    "id": "13d9406469e5f7cf",
-    "title": "דרושים מערכות מידע",
+    "id": "7f48628645a6992b",
+    "title": "מנהל/ת מוצר ומכירות",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
-    "score": "55/100",
-    "link": "https://www.jobmaster.co.il/jobs/?q=מערכות מידע"
+    "score": "64/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9824850"
   }
 ]
