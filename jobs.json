@@ -70,16 +70,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823793"
   },
   {
-    "id": "8cfce08afcd6c2dc",
-    "title": "Data Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "פתח תקווה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "89/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9847129"
-  },
-  {
     "id": "bd07f4e9908f30f7",
     "title": "לחברה מובילה דרוש/ה Technical Product Manager (TPM) לתפקיד מרכזי בצוות ה‑R&D",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/?q=Business%20Analyst"
+  },
+  {
+    "id": "20b578a3163d720e",
+    "title": "Data Master (ERP)",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9851260"
   }
 ]
