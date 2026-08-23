@@ -30,6 +30,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9801980"
   },
   {
+    "id": "8d7fa476b391c7ce",
+    "title": "Product Engineering Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "יהוד",
+    "salary": "טווח השכר לא מצוין",
+    "score": "94/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9855089"
+  },
+  {
     "id": "294bb2321273c09a",
     "title": "מנהל/ת מוצר (Product Manager) תחום הנעלה וביגוד עבודה",
     "company": "JobMaster",
@@ -188,15 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9851260"
-  },
-  {
-    "id": "8c39bcf8b1d25421",
-    "title": "Development Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "64/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9702036"
   }
 ]
