@@ -100,16 +100,6 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=Product%20Manager"
   },
   {
-    "id": "25ceeef48fc2ad5e",
-    "title": "Technical Product Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "87/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9850320"
-  },
-  {
     "id": "17fb19e5c0804884",
     "title": "דרושים Product Operations",
     "company": "JobMaster",
@@ -160,6 +150,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9848894"
   },
   {
+    "id": "c711d85702ed009c",
+    "title": "Program Manager - Tactical Laser",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9789035"
+  },
+  {
     "id": "107df016d11a11d4",
     "title": "דרושים Business Analyst",
     "company": "JobMaster",
@@ -180,6 +180,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9851260"
   },
   {
+    "id": "8c39bcf8b1d25421",
+    "title": "Development Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "64/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9702036"
+  },
+  {
     "id": "13d9406469e5f7cf",
     "title": "דרושים מערכות מידע",
     "company": "JobMaster",
@@ -188,15 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "55/100",
     "link": "https://www.jobmaster.co.il/jobs/?q=מערכות מידע"
-  },
-  {
-    "id": "d6ab9f1ed9562e20",
-    "title": "Priority System Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "49/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9826755"
   }
 ]
