@@ -140,16 +140,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9848894"
   },
   {
-    "id": "65955a34523d98f0",
-    "title": "Program Manager - Tactical Laser",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859557"
-  },
-  {
     "id": "107df016d11a11d4",
     "title": "דרושים Business Analyst",
     "company": "JobMaster",
@@ -168,6 +158,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9851260"
+  },
+  {
+    "id": "03ab0272368bd49e",
+    "title": "מנהל/ת מוצר ומכירות",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "64/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9861657"
   },
   {
     "id": "b6e0c22bc6d4a125",
@@ -190,13 +190,13 @@
     "link": "https://www.jobmaster.co.il/jobs/?q=מערכות מידע"
   },
   {
-    "id": "d6ab9f1ed9562e20",
-    "title": "Priority System Analyst",
+    "id": "045228b2cdfeac6f",
+    "title": "Gobal Sales Manager",
     "company": "JobMaster",
     "source": "JobMaster",
-    "location": "ישראל",
+    "location": "תל אביב",
     "salary": "טווח השכר לא מצוין",
-    "score": "49/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9826755"
+    "score": "53/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9860116"
   }
 ]
