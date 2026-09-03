@@ -30,14 +30,14 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9694678"
   },
   {
-    "id": "abf2a19b9c90d344",
+    "id": "6901e87110984adc",
     "title": "Product Manager",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "פתח תקווה",
     "salary": "טווח השכר לא מצוין",
     "score": "92/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9839702"
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9864892"
   },
   {
     "id": "237beaa1b0513f4c",
@@ -130,6 +130,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9854005"
   },
   {
+    "id": "23ac5c5a12424e46",
+    "title": "Data Engineer / Data Developer",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "הרצליה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "72/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9864843"
+  },
+  {
     "id": "937616b60c554686",
     "title": "Business Analyst",
     "company": "JobMaster",
@@ -150,16 +160,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9863171"
   },
   {
-    "id": "034244313dee696c",
-    "title": "Customer Success Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "אור יהודה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
-  },
-  {
     "id": "65955a34523d98f0",
     "title": "Program Manager - Tactical Laser",
     "company": "JobMaster",
@@ -168,6 +168,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859557"
+  },
+  {
+    "id": "034244313dee696c",
+    "title": "Customer Success Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "אור יהודה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
   },
   {
     "id": "41983089f127de86",
@@ -188,15 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9851260"
-  },
-  {
-    "id": "b6e0c22bc6d4a125",
-    "title": "Development Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "64/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859479"
   }
 ]
