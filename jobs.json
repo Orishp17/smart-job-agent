@@ -60,16 +60,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823793"
   },
   {
-    "id": "5f79d339a0e8867f",
-    "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9864263"
-  },
-  {
     "id": "5b83fb6b2a3421be",
     "title": "בוגרים/ות מצטיינים/ות לתפקידי Data Analyst",
     "company": "JobMaster",
@@ -78,6 +68,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "88/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823797"
+  },
+  {
+    "id": "5f79d339a0e8867f",
+    "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "88/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9864263"
   },
   {
     "id": "cd3acdd668c2c72e",
@@ -140,6 +140,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9864843"
   },
   {
+    "id": "730781967cf5ed58",
+    "title": "Business Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "71/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9866645"
+  },
+  {
     "id": "6478d67137018ef8",
     "title": "Social Media Marketing Analyst",
     "company": "JobMaster",
@@ -180,23 +190,13 @@
     "link": "https://www.jobmaster.co.il/jobs//q-Business-Analyst/"
   },
   {
-    "id": "b6e0c22bc6d4a125",
-    "title": "Development Manager",
+    "id": "f7585dfee56c8d18",
+    "title": "Data Master (ERP)",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
-    "score": "64/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859479"
-  },
-  {
-    "id": "03ab0272368bd49e",
-    "title": "מנהל/ת מוצר ומכירות",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "64/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9861657"
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9865678"
   }
 ]
