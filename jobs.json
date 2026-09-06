@@ -70,16 +70,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823797"
   },
   {
-    "id": "5f79d339a0e8867f",
-    "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9864263"
-  },
-  {
     "id": "cd3acdd668c2c72e",
     "title": "דרושים Product Manager",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9865678"
+  },
+  {
+    "id": "61cf5b32daf59303",
+    "title": "Program Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "67/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9675036"
   }
 ]
