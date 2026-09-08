@@ -110,16 +110,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9817944"
   },
   {
-    "id": "6f7144b5c62b4bd6",
-    "title": "דאטה אנליסט/ית",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "הרצליה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "74/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9854005"
-  },
-  {
     "id": "23ac5c5a12424e46",
     "title": "Data Engineer / Data Developer",
     "company": "JobMaster",
@@ -138,16 +128,6 @@
     "salary": "טווח השכר לא מצוין",
     "score": "71/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9866645"
-  },
-  {
-    "id": "6478d67137018ef8",
-    "title": "Social Media Marketing Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "70/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9863171"
   },
   {
     "id": "65955a34523d98f0",
@@ -198,5 +178,25 @@
     "salary": "טווח השכר לא מצוין",
     "score": "67/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9675036"
+  },
+  {
+    "id": "b6e0c22bc6d4a125",
+    "title": "Development Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "64/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859479"
+  },
+  {
+    "id": "03ab0272368bd49e",
+    "title": "מנהל/ת מוצר ומכירות",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "64/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9861657"
   }
 ]
