@@ -100,16 +100,6 @@
     "link": "https://www.jobmaster.co.il/jobs//q-Data-Analyst/"
   },
   {
-    "id": "ac98956607ca0045",
-    "title": "אנליסט/ית פיננסי -FP&A Analyst- עד שנתיים נסיון",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "רמת גן",
-    "salary": "14,000 - 17,000 ₪",
-    "score": "80/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9817944"
-  },
-  {
     "id": "23ac5c5a12424e46",
     "title": "Data Engineer / Data Developer",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "64/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9861657"
+  },
+  {
+    "id": "42bbb01a4e67aa19",
+    "title": "דרושים מערכות מידע",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "55/100",
+    "link": "https://www.jobmaster.co.il/jobs/q-מערכות-מידע/"
   }
 ]
