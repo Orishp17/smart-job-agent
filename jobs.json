@@ -1,5 +1,15 @@
 [
   {
+    "id": "2567e065f859acc3",
+    "title": "Product Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "רעננה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "97/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9871139"
+  },
+  {
     "id": "4d14ef85900cb014",
     "title": "Product Manager",
     "company": "JobMaster",
@@ -178,16 +188,6 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs//q-Business-Analyst/"
-  },
-  {
-    "id": "f7585dfee56c8d18",
-    "title": "Data Master (ERP)",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9865678"
   },
   {
     "id": "61cf5b32daf59303",
