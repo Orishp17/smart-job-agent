@@ -60,6 +60,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9864892"
   },
   {
+    "id": "826ab97d756d6985",
+    "title": "דרוש/ה Data Analyst למחלקת הייעוץ והפרויקטים בראשון לציון",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ראשון לציון",
+    "salary": "טווח השכר לא מצוין",
+    "score": "92/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9697086"
+  },
+  {
     "id": "237beaa1b0513f4c",
     "title": "Data Analyst ללא ניסיון!",
     "company": "JobMaster",
@@ -188,15 +198,5 @@
     "salary": "טווח השכר לא מצוין",
     "score": "67/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9675036"
-  },
-  {
-    "id": "b6e0c22bc6d4a125",
-    "title": "Development Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "64/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859479"
   }
 ]
