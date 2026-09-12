@@ -1,15 +1,5 @@
 [
   {
-    "id": "4d14ef85900cb014",
-    "title": "Product Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9868254"
-  },
-  {
     "id": "2567e065f859acc3",
     "title": "Product Manager",
     "company": "JobMaster",
@@ -18,6 +8,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "97/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9871139"
+  },
+  {
+    "id": "4d14ef85900cb014",
+    "title": "Product Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "97/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9868254"
   },
   {
     "id": "f51a8e496157238e",
@@ -170,16 +170,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9866645"
   },
   {
-    "id": "65955a34523d98f0",
-    "title": "Program Manager - Tactical Laser",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859557"
-  },
-  {
     "id": "41983089f127de86",
     "title": "דרושים Business Analyst",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9865678"
+  },
+  {
+    "id": "61cf5b32daf59303",
+    "title": "Program Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "67/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9675036"
   }
 ]
