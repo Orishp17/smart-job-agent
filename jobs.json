@@ -1,15 +1,5 @@
 [
   {
-    "id": "4d14ef85900cb014",
-    "title": "Product Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9868254"
-  },
-  {
     "id": "b6dc3c0b89362e54",
     "title": "Product Manager",
     "company": "JobMaster",
@@ -18,6 +8,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "97/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9872153"
+  },
+  {
+    "id": "4d14ef85900cb014",
+    "title": "Product Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "97/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9868254"
   },
   {
     "id": "f51a8e496157238e",
@@ -180,16 +180,6 @@
     "link": "https://www.jobmaster.co.il/jobs//q-Business-Analyst/"
   },
   {
-    "id": "f7585dfee56c8d18",
-    "title": "Data Master (ERP)",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9865678"
-  },
-  {
     "id": "61cf5b32daf59303",
     "title": "Program Manager",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "67/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9675036"
+  },
+  {
+    "id": "383cb2f71784c208",
+    "title": "אנליסט/ית נתונים",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "63/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9869110"
   }
 ]
