@@ -1,15 +1,5 @@
 [
   {
-    "id": "4d14ef85900cb014",
-    "title": "Product Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9868254"
-  },
-  {
     "id": "b6dc3c0b89362e54",
     "title": "Product Manager",
     "company": "JobMaster",
@@ -20,14 +10,14 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9872153"
   },
   {
-    "id": "f51a8e496157238e",
+    "id": "4d922cbddbba2bf7",
     "title": "דרושים Junior Product Manager",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
     "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs//q-Junior-Product-Manager/"
+    "link": "https://www.jobmaster.co.il/jobs/q-Junior-Product-Manager/"
   },
   {
     "id": "50c41dbb58d50246",
@@ -70,16 +60,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9864892"
   },
   {
-    "id": "826ab97d756d6985",
-    "title": "דרוש/ה Data Analyst למחלקת הייעוץ והפרויקטים בראשון לציון",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ראשון לציון",
-    "salary": "טווח השכר לא מצוין",
-    "score": "92/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9697086"
-  },
-  {
     "id": "237beaa1b0513f4c",
     "title": "Data Analyst ללא ניסיון!",
     "company": "JobMaster",
@@ -120,34 +100,44 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823797"
   },
   {
-    "id": "cd3acdd668c2c72e",
+    "id": "2c12a179ac3d8802",
     "title": "דרושים Product Manager",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
     "score": "87/100",
-    "link": "https://www.jobmaster.co.il/jobs//q-Product-Manager/"
+    "link": "https://www.jobmaster.co.il/jobs/q-Product-Manager/"
   },
   {
-    "id": "4b25336f76dac0bd",
+    "id": "294d3b5a05884cec",
     "title": "דרושים Product Operations",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
     "score": "86/100",
-    "link": "https://www.jobmaster.co.il/jobs//q-Product-Operations/"
+    "link": "https://www.jobmaster.co.il/jobs/q-Product-Operations/"
   },
   {
-    "id": "cf8072ba85c3877e",
+    "id": "787e90206470e03e",
     "title": "דרושים Data Analyst",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
     "score": "82/100",
-    "link": "https://www.jobmaster.co.il/jobs//q-Data-Analyst/"
+    "link": "https://www.jobmaster.co.il/jobs/q-Data-Analyst/"
+  },
+  {
+    "id": "fd2d710cc352ab71",
+    "title": "דרוש/ה מנהל/ת מוצר ותפעול ספקים לחברה באזור השרון-חובה אנגלית וניסיון 3+ שנים",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "כפר סבא",
+    "salary": "טווח השכר לא מצוין",
+    "score": "81/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9874905"
   },
   {
     "id": "23ac5c5a12424e46",
@@ -170,33 +160,43 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9866645"
   },
   {
-    "id": "034244313dee696c",
-    "title": "Customer Success Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "אור יהודה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
-  },
-  {
-    "id": "41983089f127de86",
+    "id": "2336cd312b1aed2f",
     "title": "דרושים Business Analyst",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs//q-Business-Analyst/"
+    "link": "https://www.jobmaster.co.il/jobs/q-Business-Analyst/"
   },
   {
-    "id": "f7585dfee56c8d18",
-    "title": "Data Master (ERP)",
+    "id": "61cf5b32daf59303",
+    "title": "Program Manager",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9865678"
+    "score": "67/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9675036"
+  },
+  {
+    "id": "383cb2f71784c208",
+    "title": "אנליסט/ית נתונים",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "63/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9869110"
+  },
+  {
+    "id": "54c29d93a6882882",
+    "title": "לחברת יונייטד טורס חברת ההסעות המובילה בישראל דרוש/ה אנליסט/ית",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "בני ברק",
+    "salary": "טווח השכר לא מצוין",
+    "score": "62/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9847116"
   }
 ]
