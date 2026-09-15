@@ -1,15 +1,5 @@
 [
   {
-    "id": "b6dc3c0b89362e54",
-    "title": "Product Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "רעננה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9872153"
-  },
-  {
     "id": "4d14ef85900cb014",
     "title": "Product Manager",
     "company": "JobMaster",
@@ -18,6 +8,16 @@
     "salary": "טווח השכר לא מצוין",
     "score": "97/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9868254"
+  },
+  {
+    "id": "b6dc3c0b89362e54",
+    "title": "Product Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "רעננה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "97/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9872153"
   },
   {
     "id": "f51a8e496157238e",
@@ -100,6 +100,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823793"
   },
   {
+    "id": "973b6f7818c0c773",
+    "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "88/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9874074"
+  },
+  {
     "id": "5b83fb6b2a3421be",
     "title": "בוגרים/ות מצטיינים/ות לתפקידי Data Analyst",
     "company": "JobMaster",
@@ -108,16 +118,6 @@
     "salary": "טווח השכר לא מצוין",
     "score": "88/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823797"
-  },
-  {
-    "id": "2a6d9e45cb280415",
-    "title": "ת\"א9685 דרוש /ה DATA ANALYST למחלקת ניהול סיכונים החברה נותנת שירותים פיננסים",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9872285"
   },
   {
     "id": "cd3acdd668c2c72e",
@@ -170,6 +170,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9866645"
   },
   {
+    "id": "034244313dee696c",
+    "title": "Customer Success Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "אור יהודה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
+  },
+  {
     "id": "41983089f127de86",
     "title": "דרושים Business Analyst",
     "company": "JobMaster",
@@ -180,23 +190,13 @@
     "link": "https://www.jobmaster.co.il/jobs//q-Business-Analyst/"
   },
   {
-    "id": "61cf5b32daf59303",
-    "title": "Program Manager",
+    "id": "f7585dfee56c8d18",
+    "title": "Data Master (ERP)",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
-    "score": "67/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9675036"
-  },
-  {
-    "id": "383cb2f71784c208",
-    "title": "אנליסט/ית נתונים",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "63/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9869110"
+    "score": "69/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9865678"
   }
 ]
