@@ -1,13 +1,13 @@
 [
   {
-    "id": "b6dc3c0b89362e54",
+    "id": "794f881cf503b926",
     "title": "Product Manager",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "רעננה",
     "salary": "טווח השכר לא מצוין",
     "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9872153"
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9877259"
   },
   {
     "id": "4d922cbddbba2bf7",
@@ -150,16 +150,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9866645"
   },
   {
-    "id": "65955a34523d98f0",
-    "title": "Program Manager - Tactical Laser",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859557"
-  },
-  {
     "id": "2336cd312b1aed2f",
     "title": "דרושים Business Analyst",
     "company": "JobMaster",
@@ -170,33 +160,43 @@
     "link": "https://www.jobmaster.co.il/jobs/q-Business-Analyst/"
   },
   {
-    "id": "f7585dfee56c8d18",
-    "title": "Data Master (ERP)",
+    "id": "383cb2f71784c208",
+    "title": "אנליסט/ית נתונים",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9865678"
+    "score": "63/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9869110"
   },
   {
-    "id": "61cf5b32daf59303",
-    "title": "Program Manager",
+    "id": "54c29d93a6882882",
+    "title": "לחברת יונייטד טורס חברת ההסעות המובילה בישראל דרוש/ה אנליסט/ית",
     "company": "JobMaster",
     "source": "JobMaster",
-    "location": "ישראל",
+    "location": "בני ברק",
     "salary": "טווח השכר לא מצוין",
-    "score": "67/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9675036"
+    "score": "62/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9847116"
   },
   {
-    "id": "b6e0c22bc6d4a125",
-    "title": "Development Manager",
+    "id": "1b5b938c80d9eaa5",
+    "title": "Technical Manager - Naval Systems",
     "company": "JobMaster",
     "source": "JobMaster",
-    "location": "ישראל",
+    "location": "חיפה",
     "salary": "טווח השכר לא מצוין",
-    "score": "64/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859479"
+    "score": "60/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9874882"
+  },
+  {
+    "id": "a7994374905a56db",
+    "title": "Global Sales Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "57/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9867555"
   }
 ]
