@@ -40,6 +40,16 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9694678"
   },
   {
+    "id": "42fd1a74243c4ee4",
+    "title": "Product Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "פתח תקווה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "92/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9879710"
+  },
+  {
     "id": "15a24bb4d2c6cfe8",
     "title": "מנהל/ת מוצר - Product Manager Marketing",
     "company": "JobMaster",
@@ -48,16 +58,6 @@
     "salary": "טווח השכר לא מצוין",
     "score": "92/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9868791"
-  },
-  {
-    "id": "6901e87110984adc",
-    "title": "Product Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "פתח תקווה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "92/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9864892"
   },
   {
     "id": "237beaa1b0513f4c",
@@ -120,16 +120,6 @@
     "link": "https://www.jobmaster.co.il/jobs/q-Data-Analyst/"
   },
   {
-    "id": "fd2d710cc352ab71",
-    "title": "דרוש/ה מנהל/ת מוצר ותפעול ספקים לחברה באזור השרון-חובה אנגלית וניסיון 3+ שנים",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "כפר סבא",
-    "salary": "טווח השכר לא מצוין",
-    "score": "79/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9874905"
-  },
-  {
     "id": "23ac5c5a12424e46",
     "title": "Data Engineer / Data Developer",
     "company": "JobMaster",
@@ -148,16 +138,6 @@
     "salary": "טווח השכר לא מצוין",
     "score": "71/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9866645"
-  },
-  {
-    "id": "034244313dee696c",
-    "title": "Customer Success Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "אור יהודה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9473718"
   },
   {
     "id": "65955a34523d98f0",
@@ -180,23 +160,43 @@
     "link": "https://www.jobmaster.co.il/jobs/q-Business-Analyst/"
   },
   {
-    "id": "f7585dfee56c8d18",
-    "title": "Data Master (ERP)",
+    "id": "383cb2f71784c208",
+    "title": "אנליסט/ית נתונים",
     "company": "JobMaster",
     "source": "JobMaster",
     "location": "ישראל",
     "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9865678"
+    "score": "63/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9869110"
   },
   {
-    "id": "61cf5b32daf59303",
-    "title": "Program Manager",
+    "id": "54c29d93a6882882",
+    "title": "לחברת יונייטד טורס חברת ההסעות המובילה בישראל דרוש/ה אנליסט/ית",
     "company": "JobMaster",
     "source": "JobMaster",
-    "location": "ישראל",
+    "location": "בני ברק",
     "salary": "טווח השכר לא מצוין",
-    "score": "67/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9675036"
+    "score": "62/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9847116"
+  },
+  {
+    "id": "1b5b938c80d9eaa5",
+    "title": "Technical Manager - Naval Systems",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "חיפה",
+    "salary": "טווח השכר לא מצוין",
+    "score": "60/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9874882"
+  },
+  {
+    "id": "a7994374905a56db",
+    "title": "Global Sales Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "57/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9867555"
   }
 ]
