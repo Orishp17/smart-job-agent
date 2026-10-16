@@ -100,16 +100,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9687699"
   },
   {
-    "id": "b7fed4219c821861",
-    "title": "Sales Operations Specialist",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "חיפה",
-    "salary": "טווח השכר לא מצוין",
-    "score": "80/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9897951"
-  },
-  {
     "id": "23ac5c5a12424e46",
     "title": "Data Engineer / Data Developer",
     "company": "JobMaster",
@@ -198,5 +188,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "49/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9826755"
+  },
+  {
+    "id": "644b09a955e23f47",
+    "title": "FP&A Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "49/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9813359"
   }
 ]
