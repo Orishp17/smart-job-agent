@@ -20,16 +20,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9896200"
   },
   {
-    "id": "50c41dbb58d50246",
-    "title": "Junior Data Analyst לאקדמאים עם ראש אנליטי",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "97/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9801980"
-  },
-  {
     "id": "15a24bb4d2c6cfe8",
     "title": "מנהל/ת מוצר - Product Manager Marketing",
     "company": "JobMaster",
@@ -58,26 +48,6 @@
     "salary": "טווח השכר לא מצוין",
     "score": "90/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9895928"
-  },
-  {
-    "id": "3d1fff69529f1545",
-    "title": "דרושים אקדמאים/יות מצטיינים/ות למשרת Data & BI Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "90/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823793"
-  },
-  {
-    "id": "5b83fb6b2a3421be",
-    "title": "בוגרים/ות מצטיינים/ות לתפקידי Data Analyst",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "תל אביב",
-    "salary": "טווח השכר לא מצוין",
-    "score": "88/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9823797"
   },
   {
     "id": "2c12a179ac3d8802",
@@ -198,5 +168,35 @@
     "salary": "טווח השכר לא מצוין",
     "score": "57/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9867555"
+  },
+  {
+    "id": "42bbb01a4e67aa19",
+    "title": "דרושים מערכות מידע",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "55/100",
+    "link": "https://www.jobmaster.co.il/jobs/q-מערכות-מידע/"
+  },
+  {
+    "id": "7ab74dd63c6dbbaf",
+    "title": "Gobal Sales Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "תל אביב",
+    "salary": "טווח השכר לא מצוין",
+    "score": "54/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9896095"
+  },
+  {
+    "id": "d6ab9f1ed9562e20",
+    "title": "Priority System Analyst",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "49/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9826755"
   }
 ]
