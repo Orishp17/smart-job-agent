@@ -120,16 +120,6 @@
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9899422"
   },
   {
-    "id": "65955a34523d98f0",
-    "title": "Program Manager - Tactical Laser",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "69/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859557"
-  },
-  {
     "id": "2336cd312b1aed2f",
     "title": "דרושים Business Analyst",
     "company": "JobMaster",
@@ -138,16 +128,6 @@
     "salary": "טווח השכר לא מצוין",
     "score": "69/100",
     "link": "https://www.jobmaster.co.il/jobs/q-Business-Analyst/"
-  },
-  {
-    "id": "b6e0c22bc6d4a125",
-    "title": "Development Manager",
-    "company": "JobMaster",
-    "source": "JobMaster",
-    "location": "ישראל",
-    "salary": "טווח השכר לא מצוין",
-    "score": "64/100",
-    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859479"
   },
   {
     "id": "1b5b938c80d9eaa5",
@@ -198,5 +178,15 @@
     "salary": "טווח השכר לא מצוין",
     "score": "49/100",
     "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9826755"
+  },
+  {
+    "id": "644b09a955e23f47",
+    "title": "FP&A Manager",
+    "company": "JobMaster",
+    "source": "JobMaster",
+    "location": "ישראל",
+    "salary": "טווח השכר לא מצוין",
+    "score": "49/100",
+    "link": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9813359"
   }
 ]
